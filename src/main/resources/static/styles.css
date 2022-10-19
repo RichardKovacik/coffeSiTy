@@ -11,7 +11,7 @@
 }
 @media (min-width: 992px) {
     #mainNav .navbar-nav .nav-item .nav-link {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         text-transform: uppercase;
     }
     #mainNav .navbar-nav .nav-item .nav-link:hover {
@@ -48,3 +48,8 @@
         color: #e6a756;
     }
 }
+.carousel-item
+{
+    height:400px;
+}
+

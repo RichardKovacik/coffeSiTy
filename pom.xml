@@ -37,8 +37,6 @@
 			<artifactId>bootstrap</artifactId>
 			<version>5.0.2</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
