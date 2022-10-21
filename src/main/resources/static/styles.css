@@ -11,6 +11,7 @@
 #mainNav .navbar-nav .nav-item.active .nav-link {
     color: #e6a756;
 }
+
 #mainNav .navbar-nav .nav-item .nav-link {
     font-size: 1.1rem;
     text-transform: uppercase;
@@ -29,33 +30,107 @@
     color: rgba(255, 255, 255, 0.7);
 }
 
-.navbar-brand{
+.navbar-brand {
     color: #e6a756;
 }
 
-.logo{
+.logo {
     height: 200px;
     width: 200px;
 }
 
 @media (max-width: 650px) {
-   .logo{
-       height: 120px;
-       width: 120px;
-   }
-    #mainNav .navbar-nav .nav-item .nav-link {
-        font-size: 0.9rem;
-        text-transform: uppercase;
-    }
-    #mainNav .navbar-nav .nav-item .nav-link:hover {
-        color: rgba(255, 255, 255, 0.4);
-    }
-    #mainNav .navbar-nav .nav-item.active .nav-link:hover {
-        color: #e6a756;
+    .logo {
+        height: 120px;
+        width: 120px;
     }
 }
 
-.carousel-item {
-    max-height:400px;
+.carousel-item img {
+    max-height: 400px;
+    max-width: 100%;
+}
+
+.hr-theme-slash-2 {
+    display: flex;
+}
+
+.hr-line {
+    width: 100%;
+    position: relative;
+    margin: 25px;
+    border-bottom: 5px solid rgba(47, 23, 15, 0.9);
+}
+.hr-icon {
+    color: #e6a756;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+@media (max-width: 650px) {
+    .hr-line  {
+        border-bottom: 2px solid;
+        margin: 13px;
+    }
+    .hr-icon {
+        font-size: 15px;
+    }
+}
+
+.products {
+    margin: 20px;
+}
+
+.news {
+    text-align: center;
+    color: rgba(47, 23, 15, 0.9);
+}
+
+.card-body {
+    padding-bottom: 15px;
+    max-width: 100%;
+}
+
+.card {
+    color: #e6a756;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.products {
+    background-color: white;
+}
+
+.btn-own{
+    color: #e6a756;
+    border-color: black;
+}
+
+.btn-own:hover{
+    background-color: rgba(47, 23, 15, 0.9);
+    color: #e6a756;
+}
+
+.nadpis-1 {
+    text-align: left;
+    text-transform: uppercase;
+    padding-top: 30px;
+    padding-left: 50px;
+    color: rgba(47, 23, 15, 0.9) ;
+}
+.obsah{
+    text-align: left;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+#ot{
+    color: rgba(47, 23, 15, 0.9);
+    width: 30%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.map{
+    max-height: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
 }
 
