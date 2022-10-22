@@ -134,3 +134,32 @@
     margin-bottom: 15px;
 }
 
+#gallery{
+    margin-bottom: 15px;
+}
+
+#gallery img {
+    object-fit: cover;
+    height: 18vw;
+}
+
+@media (max-width: 576px) {
+    #gallery img {
+        height: 40vw;
+        padding-bottom: 15px;
+    }
+}
+
+/*}*/
+/*#carouselGalery img {*/
+/*    height: 60vw;*/
+/*    object-fit: cover;*/
+/*}*/
+
+/*@media (min-width: 576px) {*/
+/*    #carouselGalery img {*/
+/*        height: 350px;*/
+/*    }*/
+/*}*/
+
+
