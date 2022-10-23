@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Kaviaren</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <script src="bootstrap.bundle.min.js"></script>
+    <title>Predajna</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-xl navbar-dark py-lg-0" id="mainNav">
     <div class="container">
         <a class="navbar-brand lg-none" href="index.html">
-            <img class="logo" src="obrazky/obrazok_kruh_33.png" alt="logo">
+            <img class="logo" src="../static/imgs/obrazok_kruh_33.png" th:src="@{/obrazky/obrazok_kruh_33.png}" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item px-lg-4"><a class="nav-link" href="index.html">Domov</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{/}">Domov</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Eshop</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link" href="predajna.html">Predajna</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{predajna}">Predajna</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Blog</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Prihlasenie</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Registracia</a></li>
@@ -86,15 +86,18 @@
         </table>
         <div class="row row gx-4 gx-lg-4 row-cols-1 row-cols-lg-3" id="gallery">
             <div class="col-12 col-sm-6 col-lg-5">
-                <img class="w-100" src="obrazky/aaauto.jpg" data-target="#carouselExample" data-slide-to="0" alt="">
+                <img class="w-100" src="../static/imgs/aaauto.jpg" data-target="#carouselExample" data-slide-to="0" alt="">
             </div>
             <div class="col-12 col-sm-6 col-lg-5">
-                <img class="w-100" src="obrazky/habesh-coffee-kaviaren.jpg" data-target="#carouselExample" data-slide-to="1" alt="">
+                <img class="w-100" src="../static/imgs/habesh-coffee-kaviaren.jpg" data-target="#carouselExample"
+                     data-slide-to="1" alt="">
             </div>
 
         </div>
         <h2 class="location">Kde nas najdete</h2>
-        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10424.625440044765!2d18.74407213844938!3d49.21656168542478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4714594fa7578c99%3A0xb962ec7d66d78e5e!2sHabesh%20Coffee%20Shop!5e0!3m2!1ssk!2ssk!4v1666377078462!5m2!1ssk!2ssk" width="600" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        <iframe class="map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10424.625440044765!2d18.74407213844938!3d49.21656168542478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4714594fa7578c99%3A0xb962ec7d66d78e5e!2sHabesh%20Coffee%20Shop!5e0!3m2!1ssk!2ssk!4v1666377078462!5m2!1ssk!2ssk"
+                width="600" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </div>
 </div>
