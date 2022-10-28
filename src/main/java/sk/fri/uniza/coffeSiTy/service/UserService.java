@@ -26,6 +26,10 @@ public class UserService {
         return userRepo.findUserByEmail(email);
     }
 
+    public User findUserByNick(String nick) {
+        return userRepo.findUserByNick(nick);
+    }
+
     public void saveUser(UserDto userDto) {
         User user = new User();
         user.setName(userDto.getName());

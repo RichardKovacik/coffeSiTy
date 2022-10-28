@@ -22,7 +22,7 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/registracia").permitAll();
+                .antMatchers("/").permitAll();
 //                .antMatchers("/index").permitAll()
 //                .antMatchers("/users").hasRole("ADMIN")
 //                .and()

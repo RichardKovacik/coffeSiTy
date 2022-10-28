@@ -37,11 +37,6 @@
             <div class="card-header">
                 <h2 th:text="${title}" class="text-center"></h2>
             </div>
-            <div th:if="${param.success}">
-                <div class="alert alert-info">
-                    You have successfully registered our app!
-                </div>
-            </div>
             <div class="card-body">
                 <form
                         method="post"
@@ -50,7 +45,7 @@
                         th:object="${user}"
                 >
                     <div class="form-group mb-3">
-                        <label class="form-label">First Name</label>
+                        <label class="form-label">Meno</label>
                         <input
                                 class="form-control"
                                 id="firstName"
@@ -64,7 +59,7 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="form-label">Last Name</label>
+                        <label class="form-label">Priezvisko</label>
                         <input
                                 class="form-control"
                                 id="lastName"

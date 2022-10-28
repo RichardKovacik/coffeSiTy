@@ -44,12 +44,27 @@ public class UserController {
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model){
+        User existingUser = null;
 
-        User existingUser = userService.findUserByEmail(userDto.getEmail());
+        if (userDto.getEmail() != null && !userDto.getEmail().isEmpty()) {
+            existingUser = userService.findUserByEmail(userDto.getEmail());
+        }
+        //nato spravim nejake metody este, optimalizacia do buducna
 
+        //pokial emailova adresa je prirade uz k inemu userovi
         if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
             result.rejectValue("email", null,
                     "Tato emailova adresa uz existuje");
+        }
+
+        if (userDto.getNick() != null && !userDto.getNick().isEmpty()) {
+            existingUser = userService.findUserByNick(userDto.getNick());
+        }
+
+        //taktiez nick musi byt pre kazdeho uzivatela unikatny
+        if(existingUser != null && existingUser.getNick() != null && !existingUser.getNick().isEmpty()){
+            result.rejectValue("nick", null,
+                    "Tento nickname pouziva uz iny uzivatel");
         }
 
         if(result.hasErrors()){
@@ -58,6 +73,6 @@ public class UserController {
         }
 
         userService.saveUser(userDto);
-        return "redirect:/registration";
+        return "/registrationSucc";
     }
 }

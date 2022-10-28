@@ -6,6 +6,6 @@ import sk.fri.uniza.coffeSiTy.entity.User;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
-
     User findUserByEmail(String email);
+    User findUserByNick(String nick);
 }
