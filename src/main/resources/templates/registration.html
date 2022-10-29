@@ -50,12 +50,12 @@
                         th:object="${user}"
                 >
                     <div class="form-group mb-3">
-                        <label class="form-label">Meno</label>
+                        <label class="form-label">Meno:</label>
                         <input
                                 class="form-control"
                                 id="firstName"
                                 name="firstName"
-                                placeholder="Enter first name"
+                                placeholder="Zadaj meno"
                                 th:field="*{name}"
                                 type="text"
                         />
@@ -64,12 +64,12 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="form-label">Priezvisko</label>
+                        <label class="form-label">Priezvisko:</label>
                         <input
                                 class="form-control"
                                 id="lastName"
                                 name="lastName"
-                                placeholder="Enter last name"
+                                placeholder="Zadaj priezvisko"
                                 th:field="*{lastName}"
                                 type="text"
                         />
@@ -78,12 +78,12 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="form-label">Email</label>
+                        <label class="form-label">Email:</label>
                         <input
                                 class="form-control"
                                 id="email"
                                 name="email"
-                                placeholder="Enter email address"
+                                placeholder="Zadaj email"
                                 th:field="*{email}"
                                 type="email"
                         />
@@ -92,12 +92,12 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="form-label">Nick</label>
+                        <label class="form-label">Pouzivatelske meno:</label>
                         <label for="nick"></label><input
                                 class="form-control"
                                 id="nick"
                                 name="nick"
-                                placeholder="Enter Nick"
+                                placeholder="Zadaj pouzivatelske meno"
                                 th:field="*{nick}"
                         />
                         <p th:errors = "*{nick}" class="text-danger"
@@ -105,10 +105,9 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="form-label">Datum narodenia</label>
+                        <label class="form-label">Datum narodenia:</label>
                         <label for="date"></label><input
                             class="form-control"
-                            placeholder="Enter BirthDate"
                             type = "date"
                             id= "date"
                             th:field="*{birthdate}"
@@ -119,12 +118,12 @@
 
 
                     <div class="form-group mb-3">
-                        <label class="form-label">Password</label>
+                        <label class="form-label">Heslo:</label>
                         <input
                                 class="form-control"
                                 id="password"
                                 name="password"
-                                placeholder="Enter password"
+                                placeholder="Zadaj heslo"
                                 th:field="*{pass}"
                                 type="password"
                         />
@@ -132,8 +131,8 @@
                            th:if="${#fields.hasErrors('pass')}"></p>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Register</button>
-                        <span>Already registered? <a th:href="@{/login}">Login here</a></span>
+                        <button class="btn btn-primary" type="submit">Registrovat</button>
+                        <span>Mas uz vytvoreny ucet? <a th:href="@{/login}">Prihlasit</a></span>
                     </div>
                 </form>
             </div>
