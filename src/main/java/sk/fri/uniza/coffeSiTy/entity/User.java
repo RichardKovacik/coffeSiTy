@@ -1,5 +1,7 @@
 package sk.fri.uniza.coffeSiTy.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,12 +25,13 @@ public class User {
     @Column(name = "email")
     private String email;
 
-//    @Column(name = "pass")
-//    private String pass;
-//
-//    @Column(name = "birthdate")
-//    private Date birthdate;
-//
+    @Column(name = "pass")
+    private String pass;
+
+
+    @Column(name = "birthdate")
+    private Date birthdate;
+
 //    @Column(name = "country")
 //    private String country;
 
@@ -53,13 +56,13 @@ public class User {
         this.email = email;
     }
 
-//    public String getPass() {
-//        return pass;
-//    }
-//
-//    public void setPass(String pass) {
-//        this.pass = pass;
-//    }
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
 
     public String getName() {
         return name;
@@ -77,13 +80,13 @@ public class User {
         this.lastName = lastName;
     }
 
-//    public Date getBirthdate() {
-//        return birthdate;
-//    }
-//
-//    public void setBirthdate(Date birthdate) {
-//        this.birthdate = birthdate;
-//    }
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
 //
 //    public String getCountry() {
 //        return country;

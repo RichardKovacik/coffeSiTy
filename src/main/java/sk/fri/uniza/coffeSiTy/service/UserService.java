@@ -36,8 +36,10 @@ public class UserService {
         user.setEmail(userDto.getEmail());
         user.setNick(userDto.getNick());
         user.setLastName(userDto.getLastName());
-        // encrypt the password using spring security
-     //   user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        // encrypt the password pozitim spring security
+        //bcrypt algoritmus vracia vzdy string o dlzke 60 znakov
+        user.setBirthdate(userDto.getBirthdate());
+        user.setPass(passwordEncoder.encode(userDto.getPass()));
 
 //        Role role = roleRepository.findByName("ROLE_ADMIN");
 //        if(role == null){

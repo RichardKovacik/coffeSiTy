@@ -1,37 +1,64 @@
 package sk.fri.uniza.coffeSiTy.dto;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.yaml.snakeyaml.scanner.Constant;
+import sk.fri.uniza.coffeSiTy.constants.UserConstants;
+
+import javax.persistence.Column;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.io.Serializable;
+import java.util.Date;
 
 public class UserDto {
     private Long id;
 
     @NotEmpty
-    @Size(min = 3, message = "Nickname musi obsahovat aspon 3 znaky")
-    @Size(max = 20, message = "Nickname musi obsahovat max 20 znakov")
+    @Size(min = UserConstants.MIN_LENGTH_OF_NICK, message = "Nickname musi obsahovat aspon 3 znaky")
+    @Size(max = UserConstants.MAX_LENGTH_OF_NICK, message = "Nickname musi obsahovat max 20 znakov")
     private String nick;
 
     @NotEmpty
-    @Size(min = 3, message = "Meno musi obsahovat aspon 3 znaky")
+    @Size(min = 2, message = "Meno musi obsahovat aspon 3 znaky")
     @Size(max = 20, message = "Meno musi obsahovat max 20 znakov")
     @Pattern(regexp = "^[a-zA-Z]*$", message = "Meno musi obsahovat len pismena z abecedy")
     private String name;
 
     @NotEmpty
-    @Size(min = 3, message = "Priezvisko musi obsahovat aspon 3 znaky")
+    @Size(min = 2, message = "Priezvisko musi obsahovat aspon 3 znaky")
     @Size(max = 20, message = "Priezvisko musi obsahovat max 20 znakov")
     @Pattern(regexp = "^[a-zA-Z]*$", message = "Priezvisko musi obsahovat len pismena z abecedy")
     private String lastName;
 
     @NotEmpty(message = "Email nemoze byt prazdny")
     @Size(min = 3, message = "Email musi obsahovat aspon 3 znaky")
-    @Size(max = 20, message = "Email musi obsahovat max 20 znakov")
+    @Size(max = 30, message = "Email musi obsahovat max 30 znakov")
     @Email
     private String email;
 
+    @NotEmpty
+    private String pass;
+
+    @NotNull
+    @DateTimeFormat(pattern= "yyyy-MM-dd")
+    private Date birthdate;
+
     public UserDto() {
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     public Long getId() {

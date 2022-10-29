@@ -22,10 +22,10 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{/}">Domov</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Eshop</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{predajna}">Predajna</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{/predajna}">Predajna</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Blog</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{login}">Prihlasenie</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{registracia}">Registracia</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{/login}">Prihlasenie</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{/registracia}">Registracia</a></li>
             </ul>
         </div>
     </div>
@@ -36,6 +36,11 @@
         <div class="card">
             <div class="card-header">
                 <h2 th:text="${title}" class="text-center"></h2>
+            </div>
+            <div th:if="${param.success}">
+                <div class="alert alert-info">
+                    Uzivatel uspesne zaregistrovany
+                </div>
             </div>
             <div class="card-body">
                 <form
@@ -99,20 +104,33 @@
                            th:if="${#fields.hasErrors('nick')}"></p>
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label class="form-label">Datum narodenia</label>
+                        <label for="date"></label><input
+                            class="form-control"
+                            placeholder="Enter BirthDate"
+                            type = "date"
+                            id= "date"
+                            th:field="*{birthdate}"
+                    />
+                        <p th:errors = "*{birthdate}" class="text-danger"
+                           th:if="${#fields.hasErrors('birthdate')}"></p>
+                    </div>
 
-<!--                    <div class="form-group mb-3">-->
-<!--                        <label class="form-label">Password</label>-->
-<!--                        <input-->
-<!--                                class="form-control"-->
-<!--                                id="password"-->
-<!--                                name="password"-->
-<!--                                placeholder="Enter password"-->
-<!--                                th:field="*{password}"-->
-<!--                                type="password"-->
-<!--                        />-->
-<!--                        <p th:errors = "*{password}" class="text-danger"-->
-<!--                           th:if="${#fields.hasErrors('password')}"></p>-->
-<!--                    </div>-->
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Password</label>
+                        <input
+                                class="form-control"
+                                id="password"
+                                name="password"
+                                placeholder="Enter password"
+                                th:field="*{pass}"
+                                type="password"
+                        />
+                        <p th:errors = "*{pass}" class="text-danger"
+                           th:if="${#fields.hasErrors('pass')}"></p>
+                    </div>
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Register</button>
                         <span>Already registered? <a th:href="@{/login}">Login here</a></span>
