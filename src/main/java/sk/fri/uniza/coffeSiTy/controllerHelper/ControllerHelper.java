@@ -7,7 +7,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class ControllerHelper {
+public final class ControllerHelper {
     // je user strasi ako 18 rokov a zaroven mladsi ako 100
     public static boolean isValidAge(Date birthdate) {
         if (birthdate != null) {

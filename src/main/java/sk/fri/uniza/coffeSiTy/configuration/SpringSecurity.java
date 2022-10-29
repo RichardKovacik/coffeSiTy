@@ -22,9 +22,13 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll();
-//                .antMatchers("/index").permitAll()
-//                .antMatchers("/users").hasRole("ADMIN")
+                .antMatchers("/registracia").permitAll()
+                .antMatchers("/index").permitAll()
+                .antMatchers("/predajna").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/users").hasRole("ADMIN")
+                .and()
+                .exceptionHandling().accessDeniedPage("/accessDenied.html");
 //                .and()
 //                .formLogin(
 //                        form -> form
