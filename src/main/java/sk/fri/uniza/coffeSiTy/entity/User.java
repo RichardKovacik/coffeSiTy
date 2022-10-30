@@ -1,9 +1,10 @@
 package sk.fri.uniza.coffeSiTy.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -12,6 +13,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") }
+    )
+    private List<Role> roles;
 
     @Column(name = "nick")
     private String nick;
@@ -27,17 +36,21 @@ public class User {
 
     @Column(name = "pass")
     private String pass;
-
-
     @Column(name = "birthdate")
     private Date birthdate;
 
 //    @Column(name = "country")
 //    private String country;
 
-
-
     public User() {
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public Long getId() {

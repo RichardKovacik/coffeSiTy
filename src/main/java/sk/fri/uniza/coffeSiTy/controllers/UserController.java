@@ -21,9 +21,9 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    Logger logger = LoggerFactory.getLogger(UserController.class);
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("/registracia")
     public String showRegistrationPage(Model model) {

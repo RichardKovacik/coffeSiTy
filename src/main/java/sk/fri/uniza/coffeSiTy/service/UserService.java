@@ -4,16 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
+import sk.fri.uniza.coffeSiTy.entity.Role;
 import sk.fri.uniza.coffeSiTy.entity.User;
+import sk.fri.uniza.coffeSiTy.repository.RoleRepo;
 import sk.fri.uniza.coffeSiTy.repository.UserRepo;
 
-import javax.management.relation.Role;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
+
+    @Autowired
+    private RoleRepo roleRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -41,11 +47,16 @@ public class UserService {
         user.setBirthdate(userDto.getBirthdate());
         user.setPass(passwordEncoder.encode(userDto.getPass()));
 
-//        Role role = roleRepository.findByName("ROLE_ADMIN");
+        Role role = roleRepo.findByName("ROLE_USER");
+      //  Role role2 = roleRepo.findByName("ROLE_ADMIN");
+
 //        if(role == null){
 //            role = checkRoleExist();
 //        }
-//        user.setRoles(Arrays.asList(role));
+        List<Role> roles = List.of(role);
+       // user.getRoles().add(role);
+        //musi byt pouzity setter na pridanie novej role uzivatelovi
+        user.setRoles(roles);
         userRepo.save(user);
     }
 }

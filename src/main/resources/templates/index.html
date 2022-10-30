@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>HOME</title>
@@ -24,8 +24,10 @@
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Eshop</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{predajna}">Predajna</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Blog</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{login}">Prihlasenie</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{registracia}">Registracia</a></li>
+                <li sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-item px-lg-4"> <a class="nav-link" th:href="@{/users}">Uzivatelia</a></li>
+                <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{/logout}">Odhlasit sa</a></li>
+                <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{login}">Prihlasenie</a></li>
+                <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{registracia}">Registracia</a></li>
             </ul>
         </div>
     </div>
