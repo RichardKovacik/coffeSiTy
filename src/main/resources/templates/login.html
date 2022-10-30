@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>HOME</title>
@@ -19,10 +20,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{/}">Domov</a></li>
-                <li class="nav-item px-lg-4"><a class="nav-link" href="#">Eshop</a></li>
+<!--                <li class="nav-item px-lg-4"><a class="nav-link" href="#">Eshop</a></li>-->
                 <li class="nav-item px-lg-4"><a class="nav-link" th:href="@{predajna}">Predajna</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Blog</a></li>
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-item px-lg-4"> <a class="nav-link" th:href="@{/users}">Uzivatelia</a></li>
+                <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"> <a  sec:authentication="name" class="nav-link" href="#"> </a></li>
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{/logout}">Odlasit sa</a></li>
                 <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{login}">Prihlasenie</a></li>
                 <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{registracia}">Registracia</a></li>
@@ -38,7 +40,7 @@
                 <div class="alert alert-danger">Nesprravne meno alebo heslo</div>
             </div>
             <div th:if="${param.logout}">
-                <div class="alert alert-success"> You have been logged out.</div>
+                <div class="alert alert-success"> Uspesne odhlaseny.</div>
             </div>
 
             <div class="card">
@@ -53,13 +55,13 @@
                             class="form-horizontal"
                     >
                         <div class="form-group mb-3">
-                            <label class="control-label">Email alebo Nickname:</label>
+                            <label class="control-label">Nickname:</label>
                             <input
                                     type="text"
                                     id="username"
                                     name="username"
                                     class="form-control"
-                                    placeholder="Enter email address"
+                                    placeholder="Zadaj pozuivatelske meno"
                             />
                         </div>
 
@@ -70,7 +72,7 @@
                                     id="password"
                                     name="password"
                                     class="form-control"
-                                    placeholder="Enter password"
+                                    placeholder="Zadaj heslo"
                             />
                         </div>
                         <div class="form-group mb-3">

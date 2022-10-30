@@ -47,14 +47,9 @@ public class UserService {
         user.setBirthdate(userDto.getBirthdate());
         user.setPass(passwordEncoder.encode(userDto.getPass()));
 
+        //deafutne vsetkych davam ako userov
         Role role = roleRepo.findByName("ROLE_USER");
-      //  Role role2 = roleRepo.findByName("ROLE_ADMIN");
-
-//        if(role == null){
-//            role = checkRoleExist();
-//        }
         List<Role> roles = List.of(role);
-       // user.getRoles().add(role);
         //musi byt pouzity setter na pridanie novej role uzivatelovi
         user.setRoles(roles);
         userRepo.save(user);
