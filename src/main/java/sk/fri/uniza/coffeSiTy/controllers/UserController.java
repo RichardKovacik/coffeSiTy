@@ -1,5 +1,6 @@
 package sk.fri.uniza.coffeSiTy.controllers;
 
+import com.sun.xml.bind.v2.TODO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class UserController {
         return "login";
     }
 
+    //todo: optimalozvat danu metodu
     @GetMapping(value = "/users")
     public String listUsers(Model model) {
         List<User> listUsers = userService.getListAll();
@@ -51,6 +53,8 @@ public class UserController {
                                BindingResult result,
                                Model model) {
         User existingUser = null;
+        System.out.println("-----------------");
+        System.out.println(userDto.getLastName());
 
         if (userDto.getEmail() != null && !userDto.getEmail().isEmpty()) {
             existingUser = userService.findUserByEmail(userDto.getEmail());

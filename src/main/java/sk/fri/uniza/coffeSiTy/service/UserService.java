@@ -35,6 +35,9 @@ public class UserService {
     public User findUserByNick(String nick) {
         return userRepo.findUserByNick(nick);
     }
+    public User findUserById(Long id) {
+        return userRepo.findUserById(id);
+    }
 
     public void saveUser(UserDto userDto) {
         User user = new User();
@@ -53,5 +56,15 @@ public class UserService {
         //musi byt pouzity setter na pridanie novej role uzivatelovi
         user.setRoles(roles);
         userRepo.save(user);
+    }
+
+    public void updateUser(UserDto userDto) {
+        if (userDto != null) {
+            User user = this.findUserById(userDto.getId());
+            user.setName(userDto.getName());
+            user.setEmail(userDto.getEmail());
+            user.setLastName(userDto.getLastName());
+            userRepo.save(user);
+        }
     }
 }
