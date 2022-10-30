@@ -116,4 +116,12 @@ public class User {
     public void setNick(String nick) {
         this.nick = nick;
     }
+
+    //zatial kazdy user ma max jednu rolu, do buducna moze mat viac roli
+    public String getRoleName(){
+        return this.roles.get(0).getName();
+    }
+
 }
+
+
