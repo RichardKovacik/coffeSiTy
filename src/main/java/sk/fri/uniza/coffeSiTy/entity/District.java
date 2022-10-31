@@ -1,5 +1,7 @@
 package sk.fri.uniza.coffeSiTy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -15,6 +17,7 @@ public class District implements Serializable {
     @Column(name = "name")
     String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy="district")
     private Set<Region> regions;
 
@@ -34,6 +37,7 @@ public class District implements Serializable {
         this.name = name;
     }
 
+    @JsonIgnore
     public Set<Region> getRegions() {
         return regions;
     }

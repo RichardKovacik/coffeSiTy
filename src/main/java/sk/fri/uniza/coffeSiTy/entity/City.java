@@ -1,5 +1,7 @@
 package sk.fri.uniza.coffeSiTy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,6 +16,7 @@ public class City implements Serializable {
     @Column(name = "name")
     String name;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="region_id")
     private Region region;

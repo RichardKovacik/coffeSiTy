@@ -1,5 +1,7 @@
 package sk.fri.uniza.coffeSiTy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -15,9 +17,11 @@ public class Region implements Serializable {
     @Column(name = "name")
     String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy="region")
     private Set<City> cities;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="district_id")
     private District district;
@@ -46,6 +50,7 @@ public class Region implements Serializable {
         this.district = district;
     }
 
+    @JsonIgnore
     public Set<City> getCities() {
         return cities;
     }

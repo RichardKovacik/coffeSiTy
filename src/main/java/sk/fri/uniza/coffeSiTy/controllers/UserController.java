@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
+import sk.fri.uniza.coffeSiTy.entity.District;
+import sk.fri.uniza.coffeSiTy.entity.Region;
 import sk.fri.uniza.coffeSiTy.entity.User;
 import sk.fri.uniza.coffeSiTy.service.AddressService;
 import sk.fri.uniza.coffeSiTy.service.UserService;
@@ -34,6 +36,13 @@ public class UserController {
         model.addAttribute("districts",addressService.getAllDistricts());
         model.addAttribute("title", "Registracia pouzivatela");
         return "registration";
+    }
+    @RequestMapping(value = "/regions", method = RequestMethod.GET)
+    public @ResponseBody List<Region> findAllAgencies(
+            @RequestParam(value = "districtId", required = true) Long districId) {
+        System.out.println("totttok");
+      //  District district = addressService.findDistrictByID(districId);
+        return addressService.getAllRegionsFromDistrict(districId);
     }
 
 //    @ResponseBody

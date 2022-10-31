@@ -23,6 +23,9 @@ public class AddressService {
     public List<Region> getAllRegionsFromDistrict(Long id){
         return regionRepo.findALLByDistrictID(id);
     }
+    public District findDistrictByID(Long id){
+        return districtRepo.findDistrictById(id);
+    }
 
 
 

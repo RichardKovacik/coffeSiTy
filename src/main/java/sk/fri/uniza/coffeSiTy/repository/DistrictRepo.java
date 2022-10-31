@@ -10,4 +10,5 @@ import java.util.List;
 public interface DistrictRepo extends JpaRepository<District, Long> {
     @Override
     List<District> findAll();
+    District findDistrictById(Long id);
 }
