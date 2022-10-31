@@ -100,14 +100,6 @@ public class User {
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
-//
-//    public String getCountry() {
-//        return country;
-//    }
-//
-//    public void setCountry(String country) {
-//        this.country = country;
-//    }
 
     public String getNick() {
         return nick;
