@@ -1,5 +1,6 @@
 package sk.fri.uniza.coffeSiTy.controllers;
 
+import com.google.gson.Gson;
 import com.sun.xml.bind.v2.TODO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
 import sk.fri.uniza.coffeSiTy.entity.User;
+import sk.fri.uniza.coffeSiTy.service.AddressService;
 import sk.fri.uniza.coffeSiTy.service.UserService;
 
 import javax.validation.Valid;
@@ -26,12 +25,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AddressService addressService;
+
     @GetMapping("/registracia")
     public String showRegistrationPage(Model model) {
         model.addAttribute("user", new UserDto());
+        model.addAttribute("districts",addressService.getAllDistricts());
         model.addAttribute("title", "Registracia pouzivatela");
         return "registration";
     }
+
+//    @ResponseBody
+//    @RequestMapping(value = "loadStatesByCountry/{id}", method = RequestMethod.GET)
+//    public String loadStatesByCountry(@PathVariable("id") Long id) {
+//        Gson gson = new Gson();
+//        return gson.toJson(addressService.getAllRegionsFromDistrict(id));
+//    }
 
     @GetMapping("/login")
     public String showLoginPage(Model model) {

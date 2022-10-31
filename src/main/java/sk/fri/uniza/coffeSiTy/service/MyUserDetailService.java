@@ -32,7 +32,7 @@ public class MyUserDetailService implements UserDetailsService {
                     user.getPass(),
                     mapRolesToAuthorities(user.getRoles()));
         }else{
-            throw new UsernameNotFoundException("Nespravne uzivatelske meno laebo heslo.");
+            throw new UsernameNotFoundException("Nespravne uzivatelske meno alebo heslo.");
         }
     }
     private Collection< ? extends GrantedAuthority> mapRolesToAuthorities(Collection <Role> roles) {
