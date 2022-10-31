@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
+import sk.fri.uniza.coffeSiTy.entity.City;
 import sk.fri.uniza.coffeSiTy.entity.District;
 import sk.fri.uniza.coffeSiTy.entity.Region;
 import sk.fri.uniza.coffeSiTy.entity.User;
@@ -33,24 +34,24 @@ public class UserController {
     @GetMapping("/registracia")
     public String showRegistrationPage(Model model) {
         model.addAttribute("user", new UserDto());
+        //najskor su dostupne len kraje(districts)
         model.addAttribute("districts",addressService.getAllDistricts());
         model.addAttribute("title", "Registracia pouzivatela");
         return "registration";
     }
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
-    public @ResponseBody List<Region> findAllAgencies(
-            @RequestParam(value = "districtId", required = true) Long districId) {
-        System.out.println("totttok");
-      //  District district = addressService.findDistrictByID(districId);
+    public @ResponseBody List<Region> getRegionsFromDist(
+            @RequestParam(value = "districtId") Long districId) {
         return addressService.getAllRegionsFromDistrict(districId);
     }
 
-//    @ResponseBody
-//    @RequestMapping(value = "loadStatesByCountry/{id}", method = RequestMethod.GET)
-//    public String loadStatesByCountry(@PathVariable("id") Long id) {
-//        Gson gson = new Gson();
-//        return gson.toJson(addressService.getAllRegionsFromDistrict(id));
-//    }
+    @RequestMapping(value = "/cities", method = RequestMethod.GET)
+    public @ResponseBody List<City> getCitiesFromRegion(
+            @RequestParam(value = "regionId")  Long regionId) {
+        return addressService.getAllCitiesFromRegion(regionId);
+    }
+
+
 
     @GetMapping("/login")
     public String showLoginPage(Model model) {
