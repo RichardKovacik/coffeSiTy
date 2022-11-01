@@ -143,7 +143,7 @@
                     <div class="form-group mb-3">
                         <label class="form-label cmb1">Kraj:</label>
                         <label>
-                            <select id="districts" name="districts" class="form-select" >
+                            <select required id="districts" name="districts" class="form-select" >
                                 <option value="" selected disabled hidden>Vyber kraj</option>
                                 <option th:each="d : ${districts}"
                                         th:text="${d.name}"
@@ -155,14 +155,16 @@
                     <div class="form-group mb-3">
                         <label class="form-label cmb">Okres:</label>
                         <label>
-                            <select id="regions" class="form-select" ></select>
+                            <select required id="regions" class="form-select" ></select>
                         </label>
                     </div>
 
                     <div class="form-group mb-3">
                         <label class="form-label cmb">Obec:</label>
                         <label>
-                            <select id="cities" class="form-select form-group mb-3" ></select>
+<!--                            zistim si id selectnutej adresy-->
+                            <select th:field="*{address.city.id}" required id="cities" class="form-select form-group mb-3" >
+                            </select>
                         </label>
                     </div>
 
@@ -174,8 +176,8 @@
                                     id="psc"
                                     name="psc"
                                     placeholder="Zadaj PSC"
+                                    th:field="*{address.psc}"
                             />
-<!--                                    th:field="*{nick}"-->
 
                         </label>
                     </div>
@@ -187,9 +189,8 @@
                                     id="street"
                                     name="street"
                                     placeholder="Zadaj Ulicu"
+                                    th:field="*{address.street}"
                             />
-                            <!--                                    th:field="*{nick}"-->
-
                         </label>
                     </div>
 

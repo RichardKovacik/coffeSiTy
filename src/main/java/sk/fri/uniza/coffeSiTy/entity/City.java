@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "city")
@@ -20,6 +21,10 @@ public class City implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="region_id")
     private Region region;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="city")
+    private Set<Address> addresses;
 
     public Long getId() {
         return id;
@@ -43,5 +48,13 @@ public class City implements Serializable {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
     }
 }

@@ -1,6 +1,8 @@
 package sk.fri.uniza.coffeSiTy.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +23,11 @@ public class User {
             inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") }
     )
     private List<Role> roles;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="address_id")
+    private Address address;
 
     @Column(name = "nick")
     private String nick;
@@ -114,6 +121,14 @@ public class User {
         return this.roles.get(0).getName();
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
+
 
 

@@ -11,10 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
-import sk.fri.uniza.coffeSiTy.entity.City;
-import sk.fri.uniza.coffeSiTy.entity.District;
-import sk.fri.uniza.coffeSiTy.entity.Region;
-import sk.fri.uniza.coffeSiTy.entity.User;
+import sk.fri.uniza.coffeSiTy.entity.*;
 import sk.fri.uniza.coffeSiTy.service.AddressService;
 import sk.fri.uniza.coffeSiTy.service.UserService;
 
@@ -30,6 +27,7 @@ public class UserController {
 
     @Autowired
     private AddressService addressService;
+
 
     @GetMapping("/registracia")
     public String showRegistrationPage(Model model) {
@@ -50,8 +48,6 @@ public class UserController {
             @RequestParam(value = "regionId")  Long regionId) {
         return addressService.getAllCitiesFromRegion(regionId);
     }
-
-
 
     @GetMapping("/login")
     public String showLoginPage(Model model) {
@@ -75,6 +71,9 @@ public class UserController {
         User existingUser = null;
         System.out.println("-----------------");
         System.out.println(userDto.getLastName());
+        //tu je id mesta
+        Long cityId = userDto.getAddress().getCity().getId();
+        System.out.println(userDto.getAddress().getCity().getId());
 
         if (userDto.getEmail() != null && !userDto.getEmail().isEmpty()) {
             existingUser = userService.findUserByEmail(userDto.getEmail());
@@ -110,7 +109,13 @@ public class UserController {
             model.addAttribute("title", "Registracia pouzivatela");
             return "/registration";
         }
+        //najskor ulozim adresu so city id
+        //todo: null exep
+         Address address = addressService.saveAdress(userDto.getAddress(), cityId);
+         userDto.setAddress(address);
 
+
+        //do user dto pridat id_adresy
         userService.saveUser(userDto);
         logger.info("Novy user zaregistrovany");
 

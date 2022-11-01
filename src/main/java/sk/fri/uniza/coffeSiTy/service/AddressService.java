@@ -2,9 +2,11 @@ package sk.fri.uniza.coffeSiTy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.fri.uniza.coffeSiTy.entity.Address;
 import sk.fri.uniza.coffeSiTy.entity.City;
 import sk.fri.uniza.coffeSiTy.entity.District;
 import sk.fri.uniza.coffeSiTy.entity.Region;
+import sk.fri.uniza.coffeSiTy.repository.AddressRepo;
 import sk.fri.uniza.coffeSiTy.repository.CityRepo;
 import sk.fri.uniza.coffeSiTy.repository.DistrictRepo;
 import sk.fri.uniza.coffeSiTy.repository.RegionRepo;
@@ -20,6 +22,9 @@ public class AddressService {
     @Autowired
     private CityRepo cityRepo;
 
+    @Autowired
+    private AddressRepo addressRepo;
+
 
     public List<District> getAllDistricts(){
         return districtRepo.findAll();
@@ -32,6 +37,12 @@ public class AddressService {
     }
     public List<City> getAllCitiesFromRegion(Long id){
         return cityRepo.findALLByCityByID(id);
+    }
+    //todo: do bucuna spravit dto obejkty pre kominkiaciu s klinetom a nasledne naplnenie entit
+    public Address saveAdress(Address address, Long cityId) {
+        City city = cityRepo.getCityById(cityId);
+        address.setCity(city);
+        return addressRepo.save(address);
     }
 
 

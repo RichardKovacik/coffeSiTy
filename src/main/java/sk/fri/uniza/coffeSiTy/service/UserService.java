@@ -53,8 +53,11 @@ public class UserService {
         //deafutne vsetkych davam ako userov
         Role role = roleRepo.findByName("ROLE_USER");
         List<Role> roles = List.of(role);
-        //musi byt pouzity setter na pridanie novej role uzivatelovi
+        //musi byt pouzity setter na upadate novej role uzivatelovi
         user.setRoles(roles);
+        //nastavim adresu nove uzivatela
+    //    user.getAddress().setId(1L);
+        user.setAddress(userDto.getAddress());
         userRepo.save(user);
     }
 

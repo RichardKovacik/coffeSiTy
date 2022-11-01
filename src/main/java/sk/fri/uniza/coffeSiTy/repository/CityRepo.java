@@ -11,4 +11,5 @@ import java.util.List;
 public interface CityRepo extends JpaRepository<City, Long> {
     @Query("select c from City c where c.region.id =?1")
     List<City> findALLByCityByID(Long id);
+    City getCityById(Long id);
 }
