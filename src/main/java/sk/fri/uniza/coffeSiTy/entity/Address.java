@@ -14,9 +14,9 @@ public class Address {
     private Long id;
 
     @Column(name = "psc")
-    String psc;
+    private String psc;
     @Column(name = "street")
-    String street;
+    private String street;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

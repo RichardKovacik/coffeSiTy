@@ -2,6 +2,7 @@ package sk.fri.uniza.coffeSiTy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.fri.uniza.coffeSiTy.dto.AddressDto;
 import sk.fri.uniza.coffeSiTy.entity.Address;
 import sk.fri.uniza.coffeSiTy.entity.City;
 import sk.fri.uniza.coffeSiTy.entity.District;
@@ -39,9 +40,14 @@ public class AddressService {
         return cityRepo.findALLByCityByID(id);
     }
     //todo: do bucuna spravit dto obejkty pre kominkiaciu s klinetom a nasledne naplnenie entit
-    public Address saveAdress(Address address, Long cityId) {
+    public Address saveAdress(AddressDto addressDto, Long cityId) {
+        Address address = new Address();
+        address.setPsc(addressDto.getPsc());
+        address.setStreet(addressDto.getStreet());
         City city = cityRepo.getCityById(cityId);
-        address.setCity(city);
+        if (city != null) {
+            address.setCity(city);
+        }
         return addressRepo.save(address);
     }
 

@@ -1,11 +1,13 @@
 package sk.fri.uniza.coffeSiTy.dto;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.yaml.snakeyaml.scanner.Constant;
 import sk.fri.uniza.coffeSiTy.constants.UserConstants;
 import sk.fri.uniza.coffeSiTy.entity.Address;
 
 import javax.persistence.Column;
 import javax.validation.ReportAsSingleViolation;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -43,7 +45,9 @@ public class UserDto {
     @DateTimeFormat(pattern= "yyyy-MM-dd")
     private Date birthdate;
 
-    private Address address;
+    @Valid
+    @NotNull
+    private AddressDto addressDto;
 
     public UserDto() {
     }
@@ -104,11 +108,11 @@ public class UserDto {
         this.email = email;
     }
 
-    public Address getAddress() {
-        return address;
+    public AddressDto getAddressDto() {
+        return addressDto;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressDto(AddressDto addressDto) {
+        this.addressDto = addressDto;
     }
 }

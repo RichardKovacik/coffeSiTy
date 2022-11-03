@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
+import sk.fri.uniza.coffeSiTy.entity.Address;
 import sk.fri.uniza.coffeSiTy.entity.Role;
 import sk.fri.uniza.coffeSiTy.entity.User;
 import sk.fri.uniza.coffeSiTy.repository.RoleRepo;
@@ -39,7 +40,8 @@ public class UserService {
         return userRepo.findUserById(id);
     }
 
-    public void saveUser(UserDto userDto) {
+    public void saveUser(UserDto userDto, Address address) {
+        //todo: null podmineka !=
         User user = new User();
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
@@ -56,8 +58,8 @@ public class UserService {
         //musi byt pouzity setter na upadate novej role uzivatelovi
         user.setRoles(roles);
         //nastavim adresu nove uzivatela
-    //    user.getAddress().setId(1L);
-        user.setAddress(userDto.getAddress());
+        user.setAddress(address);
+        //ulozim do databazy nove uzivatela
         userRepo.save(user);
     }
 

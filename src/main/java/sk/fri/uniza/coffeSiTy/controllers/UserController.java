@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
+import sk.fri.uniza.coffeSiTy.dto.AddressDto;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
 import sk.fri.uniza.coffeSiTy.entity.*;
 import sk.fri.uniza.coffeSiTy.service.AddressService;
@@ -72,8 +73,8 @@ public class UserController {
         System.out.println("-----------------");
         System.out.println(userDto.getLastName());
         //tu je id mesta
-        Long cityId = userDto.getAddress().getCity().getId();
-        System.out.println(userDto.getAddress().getCity().getId());
+        Long cityId = userDto.getAddressDto().getCityId();
+        System.out.println(cityId);
 
         if (userDto.getEmail() != null && !userDto.getEmail().isEmpty()) {
             existingUser = userService.findUserByEmail(userDto.getEmail());
@@ -104,19 +105,19 @@ public class UserController {
                     "Neplatny datum narodenia");
         }
 
+//        if (userDto.getAddressDto().getPsc())
+
         if (result.hasErrors()) {
+            model.addAttribute("districts",addressService.getAllDistricts());
             model.addAttribute("user", userDto);
             model.addAttribute("title", "Registracia pouzivatela");
             return "/registration";
         }
         //najskor ulozim adresu so city id
         //todo: null exep
-         Address address = addressService.saveAdress(userDto.getAddress(), cityId);
-         userDto.setAddress(address);
-
-
-        //do user dto pridat id_adresy
-        userService.saveUser(userDto);
+         Address address = addressService.saveAdress(userDto.getAddressDto(), cityId);
+        //ulozim si usera s danou adresou
+        userService.saveUser(userDto, address);
         logger.info("Novy user zaregistrovany");
 
         return "redirect:/registracia?success";
