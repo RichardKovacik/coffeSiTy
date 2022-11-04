@@ -25,8 +25,8 @@
                 <li class="nav-item px-lg-4"><a class="nav-link" href="#">Blog</a></li>
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-item px-lg-4"> <a class="nav-link" th:href="@{/users}">Uzivatelia</a></li>
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"> <a sec:authentication="name" class="nav-link" th:href="@{/profil}"> </a></li>                <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{/logout}">Odhlasit sa</a></li>
-                <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{login}">Prihlasenie</a></li>
-                <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{registracia}">Registracia</a></li>
+                <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{/login}">Prihlasenie</a></li>
+                <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link" th:href="@{/registracia}">Registracia</a></li>
             </ul>
         </div>
     </div>

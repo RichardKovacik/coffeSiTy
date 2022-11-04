@@ -1,29 +1,23 @@
 package sk.fri.uniza.coffeSiTy.dto;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.yaml.snakeyaml.scanner.Constant;
-import sk.fri.uniza.coffeSiTy.constants.UserConstants;
-import sk.fri.uniza.coffeSiTy.entity.Address;
+import sk.fri.uniza.coffeSiTy.constants.CustomConstants;
 
-import javax.persistence.Column;
-import javax.validation.ReportAsSingleViolation;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.io.Serializable;
 import java.util.Date;
 
 public class UserDto {
     private Long id;
 
     @NotEmpty
-    @Size(min = UserConstants.MIN_LENGTH_OF_NICK, message = "Nickname musi obsahovat aspon 3 znaky")
-    @Size(max = UserConstants.MAX_LENGTH_OF_NICK, message = "Nickname musi obsahovat max 20 znakov")
+    @Size(min = CustomConstants.MIN_LENGTH_OF_NICK, message = "Nickname musi obsahovat aspon 3 znaky")
+    @Size(max = CustomConstants.MAX_LENGTH_OF_NICK, message = "Nickname musi obsahovat max 20 znakov")
     private String nick;
 
-    @NotEmpty
-    @Size(min = 2, message = "Meno musi obsahovat aspon 3 znaky")
-    @Size(max = 20, message = "Meno musi obsahovat max 20 znakov")
-    @Pattern(regexp = "^[a-zA-Z]*$", message = "Meno musi obsahovat len pismena z abecedy")
+//    @NotEmpty
+//    @Size(min = 2, message = "Meno musi obsahovat aspon 2 znaky")
+//    @Size(max = 20, message = "Meno musi obsahovat max 20 znakov")
+//    @Pattern(regexp = "^[a-zA-Z]*$", message = "Meno musi obsahovat len pismena z abecedy")
     private String name;
 
     @NotEmpty

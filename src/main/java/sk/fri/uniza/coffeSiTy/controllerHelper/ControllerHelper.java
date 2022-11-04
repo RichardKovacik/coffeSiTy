@@ -1,6 +1,6 @@
 package sk.fri.uniza.coffeSiTy.controllerHelper;
 
-import sk.fri.uniza.coffeSiTy.constants.UserConstants;
+import sk.fri.uniza.coffeSiTy.constants.CustomConstants;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -13,8 +13,8 @@ public final class ControllerHelper {
         if (birthdate != null) {
             LocalDate curentDate = LocalDate.now();
             LocalDate bithDateLocal = dateToLocalDate(birthdate);
-            return Period.between(bithDateLocal, curentDate).getYears() >= UserConstants.MIN_AGE
-                    && Period.between(bithDateLocal, curentDate).getYears() <= UserConstants.MAX_AGE;
+            return Period.between(bithDateLocal, curentDate).getYears() >= CustomConstants.MIN_AGE
+                    && Period.between(bithDateLocal, curentDate).getYears() <= CustomConstants.MAX_AGE;
         }
         return true;
     }

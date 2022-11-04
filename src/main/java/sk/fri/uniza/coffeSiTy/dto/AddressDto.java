@@ -1,8 +1,12 @@
 package sk.fri.uniza.coffeSiTy.dto;
 
+import sk.fri.uniza.coffeSiTy.constants.CustomConstants;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class AddressDto {
     @NotNull
@@ -10,6 +14,8 @@ public class AddressDto {
 
     @NotNull
     @NotEmpty(message = "PSC nemoze byt prazdne")
+    @Pattern(regexp = "[0-9]+", message = "PSC musi obsahovat len cisla")
+    @Size(min = CustomConstants.LENGTH_OF_PSC, max = CustomConstants.LENGTH_OF_PSC, message = "PSC musi obsahovat presne 5 cisel")
     private String psc;
     @NotNull
     @NotEmpty(message = "Ulica nemoze byt prazdna")

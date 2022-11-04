@@ -32,10 +32,10 @@
                                                                                                       th:href="@{/logout}">Odhlasit
                     sa</a></li>
                 <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link"
-                                                                                                       th:href="@{login}">Prihlasenie</a>
+                                                                                                       th:href="@{/login}">Prihlasenie</a>
                 </li>
                 <li sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" class="nav-item px-lg-4"><a class="nav-link"
-                                                                                                       th:href="@{registracia}">Registracia</a>
+                                                                                                       th:href="@{/registracia}">Registracia</a>
                 </li>
             </ul>
         </div>
