@@ -40,6 +40,8 @@ public class UserDto {
 
     @NotEmpty
     @NotNull
+    @Size(min = 3, message = "Heslo musi obsahovat aspon 3 znaky")
+    @Size(max = 30, message = "Heslo musi obsahovat max 30 znakov")
     private String pass;
 
     @NotNull

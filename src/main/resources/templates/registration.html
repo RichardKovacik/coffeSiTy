@@ -172,13 +172,16 @@
                         <p id="dateErr" class="text-danger" > </p>
                     </div>
 
+<!--                    todo:zobrzenie hesla + validacia poctu znalov hesla-->
 
                     <div class="form-group mb-3">
                         <label class="form-label ">Heslo:</label>
                         <input
                                 required
+                                maxlength="30"
+                                th:onchange="return validatePass()"
                                 class="form-control"
-                                id="password"
+                                id="pass"
                                 name="password"
                                 placeholder="Zadaj heslo"
                                 th:field="*{pass}"
@@ -186,6 +189,7 @@
                         />
                         <p th:errors = "*{pass}" class="text-danger"
                            th:if="${#fields.hasErrors('pass')}"></p>
+                        <p id="passErr" class="text-danger" > </p>
                     </div>
 
                     <div class="form-group col-lg-4 adr">

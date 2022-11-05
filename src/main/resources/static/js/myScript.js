@@ -2,7 +2,7 @@ const regex = new RegExp('^[a-zA-Z]*$');
 
 function validateForm() {
     if (validateLastName() && validateName() && validateEmail() && validateNick()
-        && validateBirthDate()){
+        && validateBirthDate() && validatePass()){
         return true;
     }
     return false;
@@ -93,4 +93,20 @@ function validateBirthDate() {
     } else
         dateErr.innerHTML = "";
     return true;
+}
+
+function validatePass() {
+    var passValue = document.getElementById("pass").value;
+    var passErr = document.getElementById("passErr");
+
+    if(passValue.length < 3) {
+        passErr.innerHTML = "Heslo meno musi obsahovat aspon 3 znaky.";
+        return false;
+    }else if (passValue.length > 30) {
+        passErr.innerHTML = "Heslo moze obsahovat max 30 znakov.";
+        return false;
+    } else {
+        passErr.innerHTML = "";
+        return true;
+    }
 }
