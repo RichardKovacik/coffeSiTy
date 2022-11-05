@@ -10,22 +10,27 @@ public class UserDto {
     private Long id;
 
     @NotEmpty
+    @NotNull
     @Size(min = CustomConstants.MIN_LENGTH_OF_NICK, message = "Nickname musi obsahovat aspon 3 znaky")
     @Size(max = CustomConstants.MAX_LENGTH_OF_NICK, message = "Nickname musi obsahovat max 20 znakov")
     private String nick;
 
-//    @NotEmpty
-//    @Size(min = 2, message = "Meno musi obsahovat aspon 2 znaky")
-//    @Size(max = 20, message = "Meno musi obsahovat max 20 znakov")
-//    @Pattern(regexp = "^[a-zA-Z]*$", message = "Meno musi obsahovat len pismena z abecedy")
+    @NotEmpty
+    @NotNull
+    @Size(min = 2, message = "Meno musi obsahovat aspon 2 znaky")
+    @Size(max = 20, message = "Meno musi obsahovat max 20 znakov")
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "Meno musi obsahovat len pismena z abecedy")
     private String name;
 
     @NotEmpty
+    @NotNull
     @Size(min = 2, message = "Priezvisko musi obsahovat aspon 3 znaky")
     @Size(max = 20, message = "Priezvisko musi obsahovat max 20 znakov")
     @Pattern(regexp = "^[a-zA-Z]*$", message = "Priezvisko musi obsahovat len pismena z abecedy")
     private String lastName;
 
+
+    @NotNull
     @NotEmpty(message = "Email nemoze byt prazdny")
     @Size(min = 3, message = "Email musi obsahovat aspon 3 znaky")
     @Size(max = 30, message = "Email musi obsahovat max 30 znakov")
@@ -33,6 +38,7 @@ public class UserDto {
     private String email;
 
     @NotEmpty
+    @NotNull
     private String pass;
 
     @NotNull
