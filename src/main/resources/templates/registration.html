@@ -9,7 +9,6 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!--    <script type="javascript" src="../static/js/myScript.js"></script>-->
     <script type="text/javascript" th:src="@{/js/myScript.js}"></script>
 
 <!--    <script type="text/javascript">-->
@@ -84,7 +83,7 @@
                         role="form"
                         th:action="@{/registracia/save}"
                         th:object="${user}"
-                        th:onsubmit="return validateForm()"
+                        th:onsubmit="return validateRegistrationForm()"
                 >
                     <div class="form-group mb-3">
                         <label class="form-label">Meno:</label>
@@ -109,6 +108,7 @@
                         <label class="form-label">Priezvisko:</label>
                         <input
                                 required
+                                maxlength="20"
                                 class="form-control"
                                 id="ln"
                                 name="lastName"
@@ -176,7 +176,7 @@
 
                     <div class="form-group mb-3">
                         <label class="form-label ">Heslo:</label>
-                        <input
+                        <label for="pass"></label><input
                                 required
                                 maxlength="30"
                                 th:onchange="return validatePass()"
@@ -187,11 +187,16 @@
                                 th:field="*{pass}"
                                 type="password"
                         />
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" th:onclick="return changeVis()">
+                            <label class="form-check-label">
+                                Zobrazit heslo
+                            </label>
+                        </div>
                         <p th:errors = "*{pass}" class="text-danger"
                            th:if="${#fields.hasErrors('pass')}"></p>
                         <p id="passErr" class="text-danger" > </p>
                     </div>
-
                     <div class="form-group col-lg-4 adr">
                         <span>ADRESA</span>
                     </div>

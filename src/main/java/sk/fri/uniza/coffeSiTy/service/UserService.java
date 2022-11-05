@@ -72,4 +72,8 @@ public class UserService {
             userRepo.save(user);
         }
     }
+
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
 }

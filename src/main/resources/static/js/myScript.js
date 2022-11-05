@@ -1,6 +1,22 @@
 const regex = new RegExp('^[a-zA-Z]*$');
 
-function validateForm() {
+
+function changeVis() {
+    let pass = document.getElementById("pass");
+    if (pass.type === "password") {
+        pass.type = "text";
+    } else {
+        pass.type = "password";
+    }
+}
+
+function validateEditProfileForm() {
+    if (validateLastName() && validateName() && validateEmail()){
+        return true;
+    }
+    return false;
+}
+function validateRegistrationForm() {
     if (validateLastName() && validateName() && validateEmail() && validateNick()
         && validateBirthDate() && validatePass() && validatePSC() && validateStreet()){
         return true;
