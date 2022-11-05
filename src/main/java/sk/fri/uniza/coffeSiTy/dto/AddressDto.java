@@ -17,8 +17,10 @@ public class AddressDto {
     @Pattern(regexp = "[0-9]+", message = "PSC musi obsahovat len cisla")
     @Size(min = CustomConstants.LENGTH_OF_PSC, max = CustomConstants.LENGTH_OF_PSC, message = "PSC musi obsahovat presne 5 cisel")
     private String psc;
-    @NotNull
+    @NotNull(message = "Ulica nemoze byt prazdna")
     @NotEmpty(message = "Ulica nemoze byt prazdna")
+    @Size(min = 4, message = "Nazov ulice musi obsahovat aspon 4 znaky")
+    @Size(max = 30, message = "Nazov ulice musi obsahovat max 30 znakov")
     private String street;
 
     public AddressDto() {

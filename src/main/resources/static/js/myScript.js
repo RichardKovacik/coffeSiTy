@@ -2,7 +2,7 @@ const regex = new RegExp('^[a-zA-Z]*$');
 
 function validateForm() {
     if (validateLastName() && validateName() && validateEmail() && validateNick()
-        && validateBirthDate() && validatePass()){
+        && validateBirthDate() && validatePass() && validatePSC() && validateStreet()){
         return true;
     }
     return false;
@@ -107,6 +107,40 @@ function validatePass() {
         return false;
     } else {
         passErr.innerHTML = "";
+        return true;
+    }
+}
+function validatePSC() {
+    var pscValue = document.getElementById("psc").value;
+    var pscErr = document.getElementById("pscErr");
+    var re = /[0-9]+/;
+
+    if(pscValue.length < 5) {
+        pscErr.innerHTML = "PSC musi obsahovat prave 5 znakov";
+        return false;
+    }else if (!re.test(pscValue)) {
+        pscErr.innerHTML = "PSC musi obsahovat len cisla";
+        return false;
+    } else {
+        pscErr.innerHTML = "";
+        return true;
+    }
+}
+
+//zatial len pre jednoduchost pocet znakov pre ulicu
+function validateStreet() {
+    var strettValue = document.getElementById("street").value;
+    var streetErr = document.getElementById("streetErr");
+    //todo: regex ulica a cislo napr. Hviezdoslavova 72
+
+    if(strettValue.length < 4) {
+        streetErr.innerHTML = "Nazov ulice musi obsahovat aspon 4 znaky";
+        return false;
+    }else if (strettValue.length > 30) {
+        streetErr.innerHTML = "Nazov ulice moze osahovat max 30 znakov";
+        return false;
+    } else {
+        streetErr.innerHTML = "";
         return true;
     }
 }
