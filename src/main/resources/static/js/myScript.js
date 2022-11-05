@@ -80,7 +80,11 @@ function validateBirthDate() {
     let yearsDiff = today.getFullYear() - bd.getFullYear();
     // console.log("today"+today.getFullYear());
     // console.log("bd: "+bd.getFullYear());
-    if (bd >= today) {
+    // console.log("lenght: "+bdValue.length);
+    if (bdValue.length > 10) {
+        dateErr.innerHTML = "Neplatny datum narodenia.";
+        return false;
+    } else if (bd >= today) {
         dateErr.innerHTML = "Neplatny datum narodenia.";
         return false;
     } else if (yearsDiff < 18 || yearsDiff > 100) {
@@ -88,5 +92,5 @@ function validateBirthDate() {
         return false;
     } else
         dateErr.innerHTML = "";
-        return true;
+    return true;
 }
