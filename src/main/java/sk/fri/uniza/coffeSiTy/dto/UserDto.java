@@ -11,6 +11,7 @@ public class UserDto {
 
     @NotEmpty
     @NotNull
+    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Nickname musi obsahovat len pismena alebo cisla alebo ich kombinaciu")
     @Size(min = CustomConstants.MIN_LENGTH_OF_NICK, message = "Nickname musi obsahovat aspon 3 znaky")
     @Size(max = CustomConstants.MAX_LENGTH_OF_NICK, message = "Nickname musi obsahovat max 20 znakov")
     private String nick;
@@ -34,7 +35,7 @@ public class UserDto {
     @NotEmpty(message = "Email nemoze byt prazdny")
     @Size(min = 3, message = "Email musi obsahovat aspon 3 znaky")
     @Size(max = 30, message = "Email musi obsahovat max 30 znakov")
-    @Email
+    @Email(message = "Neplatny format emailu")
     private String email;
 
     @NotEmpty

@@ -1,7 +1,8 @@
 const regex = new RegExp('^[a-zA-Z]*$');
 
 function validateForm() {
-    if (validateLastName() && validateName() && validateEmail()){
+    if (validateLastName() && validateName() && validateEmail() && validateNick()
+        && validateBirthDate()){
         return true;
     }
     return false;
@@ -51,4 +52,41 @@ function validateEmail() {
         emailErr.innerHTML = "";
         return true;
     }
+}
+
+function validateNick() {
+    var nick = document.getElementById("nick").value;
+    var nickErr = document.getElementById("nickErr");
+    var re = /^[a-zA-Z0-9]+$/;
+    //pouzivatelkse meno moze obsahovat len cisla alebo pismena napr jaro12, 11riso
+
+    if(nick.length < 3) {
+        nickErr.innerHTML = "Pouzivatelske meno musi obsahovat aspon 3 znaky.";
+        return false;
+    }else if (!re.test(nick)) {
+        nickErr.innerHTML = "Pouzivatelske meno musi obsahovat len pismena a cisla alebo ich kombinaciu.";
+        return false;
+    } else {
+        nickErr.innerHTML = "";
+        return true;
+    }
+}
+
+function validateBirthDate() {
+    var bdValue = document.getElementById("date").value;
+    var dateErr = document.getElementById("dateErr");
+    var today = new Date();
+    var bd = new Date(bdValue);
+    let yearsDiff = today.getFullYear() - bd.getFullYear();
+    // console.log("today"+today.getFullYear());
+    // console.log("bd: "+bd.getFullYear());
+    if (bd >= today) {
+        dateErr.innerHTML = "Neplatny datum narodenia.";
+        return false;
+    } else if (yearsDiff < 18 || yearsDiff > 100) {
+        dateErr.innerHTML = "Neplatny datum narodenia, uzivatel nesmie byt starsi ako 100 rokov a zroven musi mat viac ako 18.";
+        return false;
+    } else
+        dateErr.innerHTML = "";
+        return true;
 }
