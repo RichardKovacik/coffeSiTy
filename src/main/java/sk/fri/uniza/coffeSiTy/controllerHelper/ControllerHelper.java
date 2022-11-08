@@ -7,6 +7,10 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ * @author richard kovacik
+ * trieda pomaha riesit zlozitejsie bussines logiky
+ */
 public final class ControllerHelper {
     // je user strasi ako 18 rokov a zaroven mladsi ako 100
     public static boolean isValidAge(Date birthdate) {

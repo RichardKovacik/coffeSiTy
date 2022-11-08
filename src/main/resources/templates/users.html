@@ -34,6 +34,11 @@
 </nav>
 <h1>Uzivatelia:</h1>
 <span th:text="${title}"></span>
+<div th:if="${param.success}">
+    <div class="alert alert-info">
+        Uzivatel uspesne odstraneny.
+    </div>
+</div>
 <div class="table-responsive">
     <table class="table table-dark table-striped table-bordered">
         <thead class="thead-dark">
@@ -44,6 +49,7 @@
             <th>Meno</th>
             <th>Priezvisko</th>
             <th>Rola</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -54,6 +60,10 @@
             <td th:text="${user.name}"></td>
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.getRoleName()}"></td>
+            <td>
+<!--                <a class="h4 m-2" th:href="@{'/zamestnanci/edit/'+${zam.id}}">Zmen</a>-->
+                <a class="h4 m-2" th:href="@{'/users/delete/'+${user.id}}">Vymaz</a>
+            </td>
         </tr>
         </tbody>
     </table>

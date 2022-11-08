@@ -26,7 +26,6 @@ public class AddressService {
     @Autowired
     private AddressRepo addressRepo;
 
-
     public List<District> getAllDistricts(){
         return districtRepo.findAll();
     }
@@ -39,7 +38,6 @@ public class AddressService {
     public List<City> getAllCitiesFromRegion(Long id){
         return cityRepo.findALLByCityByID(id);
     }
-    //todo: do bucuna spravit dto obejkty pre kominkiaciu s klinetom a nasledne naplnenie entit
     public Address saveAdress(AddressDto addressDto, Long cityId) {
         Address address = new Address();
         address.setPsc(addressDto.getPsc());

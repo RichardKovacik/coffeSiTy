@@ -6,9 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
 import sk.fri.uniza.coffeSiTy.dto.AddressDto;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
@@ -37,6 +39,37 @@ public class UserController {
         model.addAttribute("districts",addressService.getAllDistricts());
         model.addAttribute("title", "Registracia pouzivatela");
         return "registration";
+    }
+
+    @Transactional
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id,
+                             Model model) {
+        System.out.println(id);
+
+        userService.deleteUserById(id);
+
+
+        List<User> listUsers = userService.getListAll();
+        model.addAttribute("list", listUsers);
+
+
+//        if (!((long) id)){
+//
+//        }
+//        if (result.hasErrors()){
+//            System.out.println(result.getAllErrors());
+//        }
+
+
+
+//        try {
+//            service.vymazZamestnanca(id);
+//            ra.addFlashAttribute("sprava", "Zamestananec bol uspesne odstraneny");
+//        } catch (ZamestnanecNotFoundExcption e) {
+//            ra.addFlashAttribute("exp", e.getMessage());
+//        }
+        return "redirect:/users?success";
     }
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
     public @ResponseBody List<Region> getRegionsFromDist(

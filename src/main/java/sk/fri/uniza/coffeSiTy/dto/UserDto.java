@@ -18,15 +18,15 @@ public class UserDto {
 
     @NotEmpty
     @NotNull
-    @Size(min = 2, message = "Meno musi obsahovat aspon 2 znaky")
-    @Size(max = 20, message = "Meno musi obsahovat max 20 znakov")
+    @Size(min = CustomConstants.MIN_LENGTH_OF_NAME, message = "Meno musi obsahovat aspon 2 znaky")
+    @Size(max = CustomConstants.MAX_LENGTH_OF_NAME, message = "Meno musi obsahovat max 20 znakov")
     @Pattern(regexp = "^[a-zA-Z]*$", message = "Meno musi obsahovat len pismena z abecedy")
     private String name;
 
     @NotEmpty
     @NotNull
-    @Size(min = 2, message = "Priezvisko musi obsahovat aspon 3 znaky")
-    @Size(max = 20, message = "Priezvisko musi obsahovat max 20 znakov")
+    @Size(min = CustomConstants.MIN_LENGTH_OF_NAME, message = "Priezvisko musi obsahovat aspon 3 znaky")
+    @Size(max = CustomConstants.MAX_LENGTH_OF_NAME, message = "Priezvisko musi obsahovat max 20 znakov")
     @Pattern(regexp = "^[a-zA-Z]*$", message = "Priezvisko musi obsahovat len pismena z abecedy")
     private String lastName;
 

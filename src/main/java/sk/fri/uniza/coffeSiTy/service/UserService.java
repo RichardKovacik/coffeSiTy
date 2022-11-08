@@ -3,6 +3,7 @@ package sk.fri.uniza.coffeSiTy.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
 import sk.fri.uniza.coffeSiTy.entity.Address;
 import sk.fri.uniza.coffeSiTy.entity.Role;
@@ -75,5 +76,15 @@ public class UserService {
 
     public PasswordEncoder getPasswordEncoder() {
         return passwordEncoder;
+    }
+
+//    @Transactional
+    public boolean deleteUserById(Long id) {
+        User user = userRepo.findUserById(id);
+        if (user != null) {
+            userRepo.deleteUserById(id);
+            return true;
+        }
+        return false;
     }
 }
