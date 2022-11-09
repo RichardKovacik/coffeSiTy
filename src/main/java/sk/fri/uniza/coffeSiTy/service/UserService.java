@@ -78,7 +78,7 @@ public class UserService {
         return passwordEncoder;
     }
 
-//    @Transactional
+    @Transactional
     public boolean deleteUserById(Long id) {
         User user = userRepo.findUserById(id);
         if (user != null) {

@@ -46,10 +46,15 @@ public class UserController {
     public String deleteUser(@PathVariable("id") Long id,
                              Model model) {
         System.out.println(id);
+        //todo: overenie neplatneho idcka, ked uzivatel nexistuje
 
-        userService.deleteUserById(id);
+        if (!userService.deleteUserById(id)){
+
+        }
 
 
+
+        //znova nacitam uzivatlov ale uz bez vymazeneho
         List<User> listUsers = userService.getListAll();
         model.addAttribute("list", listUsers);
 
@@ -83,6 +88,7 @@ public class UserController {
         return addressService.getAllCitiesFromRegion(regionId);
     }
 
+//    @Transactional
     @GetMapping("/login")
     public String showLoginPage(Model model) {
         //   model.addAttribute("user", new UserDto());

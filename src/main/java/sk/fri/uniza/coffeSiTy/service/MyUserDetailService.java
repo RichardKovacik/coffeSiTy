@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sk.fri.uniza.coffeSiTy.entity.Role;
 import sk.fri.uniza.coffeSiTy.entity.User;
 import sk.fri.uniza.coffeSiTy.repository.UserRepo;
@@ -19,6 +20,7 @@ public class MyUserDetailService implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;
 
+    @Transactional
     @Override
     public UserDetails loadUserByUsername(String nick) throws UsernameNotFoundException {
         User user = null;
