@@ -15,6 +15,7 @@ import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
 import sk.fri.uniza.coffeSiTy.dto.AddressDto;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
 import sk.fri.uniza.coffeSiTy.entity.*;
+import sk.fri.uniza.coffeSiTy.exception.UserNotFoundException;
 import sk.fri.uniza.coffeSiTy.service.AddressService;
 import sk.fri.uniza.coffeSiTy.service.UserService;
 
@@ -44,37 +45,22 @@ public class UserController {
     @Transactional
     @GetMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id,
-                             Model model) {
+                             Model model,
+                             RedirectAttributes ra) {
         System.out.println(id);
         //todo: overenie neplatneho idcka, ked uzivatel nexistuje
 
-        if (!userService.deleteUserById(id)){
-
+        try {
+            userService.deleteUserById(id);
+            //znova nacitam uzivatlov ale uz bez vymazeneho
+            List<User> listUsers = userService.getListAll();
+            model.addAttribute("list", listUsers);
+            ra.addFlashAttribute("sprava", "Uzivatel bol uspesne odstraneny.");
+        }catch (UserNotFoundException e){
+            ra.addFlashAttribute("exp", e.getMessage());
         }
 
-
-
-        //znova nacitam uzivatlov ale uz bez vymazeneho
-        List<User> listUsers = userService.getListAll();
-        model.addAttribute("list", listUsers);
-
-
-//        if (!((long) id)){
-//
-//        }
-//        if (result.hasErrors()){
-//            System.out.println(result.getAllErrors());
-//        }
-
-
-
-//        try {
-//            service.vymazZamestnanca(id);
-//            ra.addFlashAttribute("sprava", "Zamestananec bol uspesne odstraneny");
-//        } catch (ZamestnanecNotFoundExcption e) {
-//            ra.addFlashAttribute("exp", e.getMessage());
-//        }
-        return "redirect:/users?success";
+        return "redirect:/users";
     }
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
     public @ResponseBody List<Region> getRegionsFromDist(

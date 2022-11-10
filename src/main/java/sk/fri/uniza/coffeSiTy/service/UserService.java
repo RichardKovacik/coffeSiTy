@@ -8,11 +8,10 @@ import sk.fri.uniza.coffeSiTy.dto.UserDto;
 import sk.fri.uniza.coffeSiTy.entity.Address;
 import sk.fri.uniza.coffeSiTy.entity.Role;
 import sk.fri.uniza.coffeSiTy.entity.User;
+import sk.fri.uniza.coffeSiTy.exception.UserNotFoundException;
 import sk.fri.uniza.coffeSiTy.repository.RoleRepo;
 import sk.fri.uniza.coffeSiTy.repository.UserRepo;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -79,12 +78,11 @@ public class UserService {
     }
 
     @Transactional
-    public boolean deleteUserById(Long id) {
+    public void deleteUserById(Long id) throws UserNotFoundException{
         User user = userRepo.findUserById(id);
-        if (user != null) {
-            userRepo.deleteUserById(id);
-            return true;
+        if (user == null) {
+            throw new UserNotFoundException();
         }
-        return false;
+        userRepo.deleteUserById(id);
     }
 }
