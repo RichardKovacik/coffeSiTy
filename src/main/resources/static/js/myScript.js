@@ -1,5 +1,40 @@
 const regex = new RegExp('^[a-zA-Z]*$');
 
+$(document).ready(function () {
+    $("#districts").change(
+        function() {
+            $.getJSON("http://localhost:8080/regions", {
+                districtId : $(this).val(),
+                ajax : 'true'
+            }, function(data) {
+                var html = '  <option value="" selected disabled hidden>Vyber Okres</option>';
+                var len = data.length;
+                for ( var i = 0; i < len; i++) {
+                    html += '<option value="' + data[i].id + '">'
+                        + data[i].name + '</option>';
+                }
+                html += '</option>';
+                $('#regions').html(html);
+            });
+        });
+
+    $("#regions").change(
+        function() {
+            $.getJSON("http://localhost:8080/cities", {
+                regionId : $(this).val(),
+                ajax : 'true'
+            }, function(data) {
+                var html = '  <option value="" selected disabled hidden>Vyber Obec</option>';
+                var len = data.length;
+                for ( var i = 0; i < len; i++) {
+                    html += '<option value="' + data[i].id + '">'
+                        + data[i].name + '</option>';
+                }
+                html += '</option>';
+                $('#cities').html(html);
+            });
+        });
+});
 
 function changeVis() {
     let pass = document.getElementById("pass");
@@ -160,3 +195,25 @@ function validateStreet() {
         return true;
     }
 }
+
+// function showModal(){
+//     console.log("modalko");
+//     $("#exampleModalCenter").modal('show');
+//
+// }
+
+$(document).ready(function () {
+    $('#deleteBtn').click(function(event) {
+        event.preventDefault();
+        var href =$(this).attr('href')
+        console.log(href);
+        $('#exampleModalCenter #yes').attr('href',href);
+        $('#exampleModalCenter').modal('show');
+    });
+
+
+    // $('#yes').click(function() {
+    //     $('#exampleModalCenter').modal('hide');
+    // });
+});
+
