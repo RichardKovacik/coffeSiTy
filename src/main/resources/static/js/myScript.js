@@ -1,6 +1,19 @@
 const regex = new RegExp('^[a-zA-Z]*$');
 
 $(document).ready(function () {
+
+    $('.table #deleteBtn').on('click',function(event) {
+        event.preventDefault();
+        var href =$(this).attr('href')
+        console.log(href);
+        $('#deleteModal #yes').attr('href',href);
+        $('#deleteModal').modal('show');
+    });
+
+});
+
+
+$(document).ready(function () {
     $("#districts").change(
         function() {
             $.getJSON("http://localhost:8080/regions", {
@@ -195,15 +208,4 @@ function validateStreet() {
         return true;
     }
 }
-$(document).ready(function () {
-
-    $('.table #deleteBtn').on('click',function(event) {
-        event.preventDefault();
-        var href =$(this).attr('href')
-        console.log(href);
-        $('#deleteModal #yes').attr('href',href);
-        $('#deleteModal').modal('show');
-    });
-
-});
 
