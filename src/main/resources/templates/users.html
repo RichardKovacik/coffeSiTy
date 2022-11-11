@@ -71,9 +71,6 @@
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.getRoleName()}"></td>
             <td>
-<!--                th:href="@{'/users/delete/'+${user.id}}"-->
-<!--                <a class="btn btn-danger" th:if="${user.roles.get(0).name} == 'ROLE_USER'" th:href="@{'/users/delete/'+${user.id}}">Vymaz</a>-->
-<!--                onclick="showModal()-->
                 <a th:href="@{'/users/delete/'+${user.id}}" id="deleteBtn" class="btn btn-danger" th:if="${user.roles.get(0).name} == 'ROLE_USER'">Vymaz</a>
             </td>
         </tr>
@@ -81,7 +78,7 @@
     </table>
 </div>
 <!--                 Modal-->
-<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">

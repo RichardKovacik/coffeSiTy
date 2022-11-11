@@ -195,25 +195,15 @@ function validateStreet() {
         return true;
     }
 }
-
-// function showModal(){
-//     console.log("modalko");
-//     $("#exampleModalCenter").modal('show');
-//
-// }
-
 $(document).ready(function () {
-    $('#deleteBtn').click(function(event) {
+
+    $('.table #deleteBtn').on('click',function(event) {
         event.preventDefault();
         var href =$(this).attr('href')
         console.log(href);
-        $('#exampleModalCenter #yes').attr('href',href);
-        $('#exampleModalCenter').modal('show');
+        $('#deleteModal #yes').attr('href',href);
+        $('#deleteModal').modal('show');
     });
 
-
-    // $('#yes').click(function() {
-    //     $('#exampleModalCenter').modal('hide');
-    // });
 });
 
