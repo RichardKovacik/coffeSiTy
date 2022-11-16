@@ -1,5 +1,6 @@
 const regex = new RegExp('^[a-zA-Z]*$');
 
+//logika modalneho okna(posielam link pre operaciu mazania)
 $(document).ready(function () {
 
     $('.table #deleteBtn').on('click',function(event) {
@@ -12,10 +13,11 @@ $(document).ready(function () {
 
 });
 
+//ajax pre dynamicke nacitanie cislenikov kraj-region-okres
 
 $(document).ready(function () {
     $("#districts").change(
-        function() {
+        function region() {
             $.getJSON("http://localhost:8080/regions", {
                 districtId : $(this).val(),
                 ajax : 'true'
@@ -29,10 +31,10 @@ $(document).ready(function () {
                 html += '</option>';
                 $('#regions').html(html);
             });
+            $('#cities').empty();
         });
-
     $("#regions").change(
-        function() {
+        function city() {
             $.getJSON("http://localhost:8080/cities", {
                 regionId : $(this).val(),
                 ajax : 'true'

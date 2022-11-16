@@ -1,7 +1,5 @@
 package sk.fri.uniza.coffeSiTy.controllers;
 
-import com.google.gson.Gson;
-import com.sun.xml.bind.v2.TODO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
-import sk.fri.uniza.coffeSiTy.dto.AddressDto;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
 import sk.fri.uniza.coffeSiTy.entity.*;
 import sk.fri.uniza.coffeSiTy.exception.UserNotFoundException;
@@ -23,9 +20,9 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class RegistrationController {
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private Logger logger = LoggerFactory.getLogger(RegistrationController.class);
     @Autowired
     private UserService userService;
 
@@ -125,7 +122,7 @@ public class UserController {
         }
 
         if (existingUser == null && !ControllerHelper.isValidAge(userDto.getBirthdate())) {
-            logger.error("Neplatny datum narodenia(msi byt len v rozmedzi 18 az 100 rokov)");
+            logger.error("Neplatny datum narodenia(musi byt len v rozmedzi 18 az 100 rokov)");
             result.rejectValue("birthdate", null,
                     "Neplatny datum narodenia");
         }
