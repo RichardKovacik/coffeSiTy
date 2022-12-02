@@ -20,9 +20,9 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class RegistrationController {
+public class UserController {
 
-    private Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
 
@@ -103,6 +103,7 @@ public class RegistrationController {
         }
         //nato spravim nejake metody este, optimalizacia do buducna
 
+        //TODO: refactor do metod samoztnanych
         //pokial emailova adresa je prirade uz k inemu userovi
         if (existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()) {
             logger.error("Email uz pouziva iny uzivatel");

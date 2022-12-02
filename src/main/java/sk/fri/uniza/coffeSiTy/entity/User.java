@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -28,6 +29,9 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="address_id")
     private Address address;
+
+    @OneToMany(mappedBy="user")
+    private List<Article> articles;
 
     @Column(name = "nick")
     private String nick;
