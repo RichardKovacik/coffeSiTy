@@ -33,4 +33,7 @@ public class ArticleService {
         articleRepo.save(article);
 
     }
+    public Article findArticleById(Long id){
+        return articleRepo.findArticleById(id);
+    }
 }

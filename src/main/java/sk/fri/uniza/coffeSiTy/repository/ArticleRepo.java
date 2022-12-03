@@ -6,4 +6,5 @@ import sk.fri.uniza.coffeSiTy.entity.Article;
 
 @Repository
 public interface ArticleRepo extends JpaRepository<Article, Long> {
+    Article findArticleById(Long id);
 }
