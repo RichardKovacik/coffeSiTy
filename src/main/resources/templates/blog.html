@@ -43,7 +43,11 @@
 <!--</tbody>-->
 <!--</table>-->
 <div class="container-md mb-5">
-    <h2>Zoznam clankov</h2>
+        <h2 class= "text-center">Zoznam clankov</h2>
+    <div class="d-flex justify-content-center">
+        <a  sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/addArticle}" id="addArticle" class="btn btn-primary">PRIDAJ NOVY CLANOK</a>
+    </div>
+
 <div class="card-group">
     <th:block th:each="article: ${list}">
         <div class="px-4 px-lg-3 mt-3">

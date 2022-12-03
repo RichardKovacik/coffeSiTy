@@ -88,6 +88,7 @@ public class UserController {
     }
 
     @PostMapping("/registracia/save")
+    @Transactional
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model) {
