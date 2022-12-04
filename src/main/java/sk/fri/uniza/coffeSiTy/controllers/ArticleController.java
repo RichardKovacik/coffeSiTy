@@ -33,9 +33,7 @@ public class ArticleController {
         //vytiahnem z db aktualne prihlseneho usera
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByNick(auth.getName());
-        if (user!= null){
-            model.addAttribute("user",user);
-        }
+        model.addAttribute("user",user);
         return "blog";
     }
     @RequestMapping("/addArticle")

@@ -12,7 +12,7 @@ public class RoleService {
 
     public Role findRoleByName(String name){
         if (name !=null) {
-            roleRepo.findRoleByName(name);
+           return roleRepo.findByName(name);
         }
         return null;
     }
