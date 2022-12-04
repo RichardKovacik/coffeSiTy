@@ -12,6 +12,7 @@ import sk.fri.uniza.coffeSiTy.exception.UserNotFoundException;
 import sk.fri.uniza.coffeSiTy.repository.RoleRepo;
 import sk.fri.uniza.coffeSiTy.repository.UserRepo;
 
+import javax.naming.ldap.PagedResultsControl;
 import java.util.List;
 
 @Service
@@ -20,7 +21,7 @@ public class UserService {
     private UserRepo userRepo;
 
     @Autowired
-    private RoleRepo roleRepo;
+    private RoleService roleService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -53,7 +54,7 @@ public class UserService {
         user.setPass(passwordEncoder.encode(userDto.getPass()));
 
         //deafutne vsetkych davam ako userov
-        Role role = roleRepo.findByName("ROLE_USER");
+        Role role = roleService.findRoleByName("ROLE_USER");
         List<Role> roles = List.of(role);
         //musi byt pouzity setter na upadate novej role uzivatelovi
         user.setRoles(roles);

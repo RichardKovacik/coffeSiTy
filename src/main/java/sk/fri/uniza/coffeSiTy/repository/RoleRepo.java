@@ -8,5 +8,5 @@ import sk.fri.uniza.coffeSiTy.entity.Role;
 @Repository
 public interface RoleRepo extends JpaRepository<Role, Long> {
     @Query("SELECT r FROM Role r WHERE r.name like ?1")
-    Role findByName(String name);
+    Role findRoleByName(String name);
 }
