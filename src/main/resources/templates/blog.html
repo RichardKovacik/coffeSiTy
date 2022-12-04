@@ -58,9 +58,12 @@
             <p class="card-text">[[${article.getFirstPartOfContent()}]]</p>
         </div>
         <div class="card-footer">
+<!--            <a hidden id="userName" sec:authentication="name"></a>-->
             <a th:href="@{'/blog/view/'+${article.id}}" class="btn btn-info">Zobrazit</a>
-            <a href="#" class="btn btn-warning">Upravit</a>
-            <a href="#" class="btn btn-danger">Odstranit</a>
+            <a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" href="#" class="btn btn-warning"
+               th:if="${user.name != null && article.user.name == user.name}">Upravit</a>
+            <a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" href="#" class="btn btn-danger"
+               th:if="${user.name != null && article.user.name == user.name}">Odstranit</a>
         </div>
     </div>
         </div>
