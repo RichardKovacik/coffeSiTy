@@ -2,6 +2,8 @@ package sk.fri.uniza.coffeSiTy.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,7 +32,8 @@ public class User {
     @JoinColumn(name="address_id")
     private Address address;
 
-    @OneToMany(mappedBy="user")
+    //ked vymazem uzivatela vymazu spolu s nim aj jeho clanky, zabezpeci mi to cascadetype.ALL
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
     private List<Article> articles;
 
     @Column(name = "nick")
