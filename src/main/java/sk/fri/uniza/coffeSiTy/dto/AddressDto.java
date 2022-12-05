@@ -1,6 +1,7 @@
 package sk.fri.uniza.coffeSiTy.dto;
 
 import sk.fri.uniza.coffeSiTy.constants.CustomConstants;
+import sk.fri.uniza.coffeSiTy.entity.City;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
@@ -12,6 +13,7 @@ public class AddressDto {
     @NotNull
     private Long cityId;
 
+    private City city;
     @NotNull
     @NotEmpty(message = "PSC nemoze byt prazdne")
     @Pattern(regexp = "[0-9]+", message = "PSC musi obsahovat len cisla")
@@ -48,5 +50,13 @@ public class AddressDto {
 
     public void setCityId(Long cityId) {
         this.cityId = cityId;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 }

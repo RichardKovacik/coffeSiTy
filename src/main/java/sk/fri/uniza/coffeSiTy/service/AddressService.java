@@ -17,39 +17,14 @@ import java.util.List;
 @Service
 public class AddressService {
     @Autowired
-    private DistrictRepo districtRepo;
-    @Autowired
-    private RegionRepo regionRepo;
-    @Autowired
-    private CityRepo cityRepo;
-
-    @Autowired
     private AddressRepo addressRepo;
 
-    public List<District> getAllDistricts(){
-        return districtRepo.findAll();
-    }
-    public List<Region> getAllRegionsFromDistrict(Long id){
-        return regionRepo.findALLByDistrictID(id);
-    }
-    public District findDistrictByID(Long id){
-        return districtRepo.findDistrictById(id);
-    }
-    public List<City> getAllCitiesFromRegion(Long id){
-        return cityRepo.findALLByCityByID(id);
-    }
-    public Address saveAdress(AddressDto addressDto, Long cityId) {
+    public Address saveAdress(AddressDto addressDto) {
         Address address = new Address();
         address.setPsc(addressDto.getPsc());
         address.setStreet(addressDto.getStreet());
-        City city = cityRepo.getCityById(cityId);
-        if (city != null) {
-            address.setCity(city);
-        }
+        address.setCity(addressDto.getCity());
         return addressRepo.save(address);
     }
-
-
-
 }
 

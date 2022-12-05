@@ -13,8 +13,7 @@ import sk.fri.uniza.coffeSiTy.controllerHelper.ControllerHelper;
 import sk.fri.uniza.coffeSiTy.dto.UserDto;
 import sk.fri.uniza.coffeSiTy.entity.*;
 import sk.fri.uniza.coffeSiTy.exception.UserNotFoundException;
-import sk.fri.uniza.coffeSiTy.service.AddressService;
-import sk.fri.uniza.coffeSiTy.service.UserService;
+import sk.fri.uniza.coffeSiTy.service.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,16 +24,24 @@ public class UserController {
     private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
-
     @Autowired
     private AddressService addressService;
+
+    @Autowired
+    private DistrictService districtService;
+
+    @Autowired
+    private RegionService regionService;
+
+    @Autowired
+    private CityService cityService;
 
 
     @GetMapping("/registracia")
     public String showRegistrationPage(Model model) {
         model.addAttribute("user", new UserDto());
         //najskor su dostupne len kraje(districts)
-        model.addAttribute("districts",addressService.getAllDistricts());
+        model.addAttribute("districts",districtService.getAllDistricts());
         model.addAttribute("title", "Registracia pouzivatela");
         return "registration";
     }
@@ -62,13 +69,13 @@ public class UserController {
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
     public @ResponseBody List<Region> getRegionsFromDist(
             @RequestParam(value = "districtId") Long districId) {
-        return addressService.getAllRegionsFromDistrict(districId);
+        return regionService.getAllRegionsFromDistrict(districId);
     }
 
     @RequestMapping(value = "/cities", method = RequestMethod.GET)
     public @ResponseBody List<City> getCitiesFromRegion(
             @RequestParam(value = "regionId")  Long regionId) {
-        return addressService.getAllCitiesFromRegion(regionId);
+        return cityService.getAllCitiesFromRegion(regionId);
     }
 
 //    @Transactional
@@ -132,14 +139,17 @@ public class UserController {
 //        if (userDto.getAddressDto().getPsc())
 
         if (result.hasErrors()) {
-            model.addAttribute("districts",addressService.getAllDistricts());
+            model.addAttribute("districts",districtService.getAllDistricts());
             model.addAttribute("user", userDto);
             model.addAttribute("title", "Registracia pouzivatela");
+            System.out.println("aaaaa");
             return "/registration";
         }
         //najskor ulozim adresu so city id
         //todo: null exep
-         Address address = addressService.saveAdress(userDto.getAddressDto(), cityId);
+         City city = cityService.getCityById(cityId);
+        userDto.getAddressDto().setCity(city);
+         Address address = addressService.saveAdress(userDto.getAddressDto());
         //ulozim si usera s danou adresou
         userService.saveUser(userDto, address);
         logger.info("Novy user zaregistrovany");
