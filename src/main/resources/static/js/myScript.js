@@ -3,12 +3,24 @@ const regex = new RegExp('^[a-zA-Z]*$');
 //logika modalneho okna(posielam link pre operaciu mazania)
 $(document).ready(function () {
 
+    //deleting user
     $('.table #deleteBtn').on('click',function(event) {
         event.preventDefault();
         var href =$(this).attr('href')
         console.log(href);
         $('#deleteModal #yes').attr('href',href);
         $('#deleteModal').modal('show');
+    });
+});
+
+$(document).ready(function () {
+    //deleting article
+    $('.card-footer #deleteArticle').on('click',function(event) {
+        event.preventDefault();
+        var href =$(this).attr('href')
+        console.log(href);
+        $('#deleteArticleModal #yes').attr('href',href);
+        $('#deleteArticleModal').modal('show');
     });
 
 });

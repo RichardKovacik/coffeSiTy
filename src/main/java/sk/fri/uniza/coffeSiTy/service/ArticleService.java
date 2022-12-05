@@ -22,4 +22,7 @@ public class ArticleService {
     public Article findArticleById(Long id){
         return articleRepo.findArticleById(id);
     }
+    public void deleteArticleById(Long id){
+         articleRepo.deleteArticleById(id);
+    }
 }

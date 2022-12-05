@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sk.fri.uniza.coffeSiTy.entity.Article;
 import sk.fri.uniza.coffeSiTy.entity.User;
+import sk.fri.uniza.coffeSiTy.exception.UserNotFoundException;
 import sk.fri.uniza.coffeSiTy.service.ArticleService;
 import sk.fri.uniza.coffeSiTy.service.UserService;
 
@@ -61,11 +62,24 @@ public class ArticleController {
 
     @Transactional
     @GetMapping("/blog/view/{id}")
-    public String deleteUser(@PathVariable("id") Long id,
+    public String showArticle(@PathVariable("id") Long id,
                              Model model,
                              RedirectAttributes ra) {
         Article article = articleService.findArticleById(id);
         model.addAttribute("article", article);
         return "article";
+    }
+
+    @Transactional
+    @GetMapping("/blog/delete/{id}")
+    public String deleteArticle(@PathVariable("id") Long id,
+                             Model model,
+                             RedirectAttributes ra) {
+        //todo: validacia nespravneho id
+            articleService.deleteArticleById(id);
+            //znova nacitam uzivatelov ale uz bez vymazeneho
+            List<Article> list = articleService.getAllArticles();
+            model.addAttribute("list", list);
+        return "redirect:/blog?success";
     }
 }
