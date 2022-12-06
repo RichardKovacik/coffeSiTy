@@ -43,7 +43,7 @@ public class Article {
         return content;
     }
     public String getFirstPartOfContent() {
-        return content.substring(0, 100)+"...";
+        return content.substring(0, 99)+"...";
     }
 
     public void setContent(String content) {

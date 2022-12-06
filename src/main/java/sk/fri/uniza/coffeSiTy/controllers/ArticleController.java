@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sk.fri.uniza.coffeSiTy.dto.ArticleDto;
 import sk.fri.uniza.coffeSiTy.entity.Article;
 import sk.fri.uniza.coffeSiTy.entity.User;
 import sk.fri.uniza.coffeSiTy.exception.UserNotFoundException;
@@ -40,23 +41,29 @@ public class ArticleController {
     @RequestMapping("/addArticle")
     public String getPageForAddArticle(Model model) {
         //todo: do buducna prerobit article na dto object
-        model.addAttribute("article", new Article());
+        model.addAttribute("article", new ArticleDto());
         return "addArticle";
     }
 
     @PostMapping("/addArticle/save")
     @Transactional
-    public String saveArticle(@ModelAttribute("article") Article article,
+    public String saveArticle(@Valid @ModelAttribute("article") ArticleDto articleDto,
                                BindingResult result,
                                Model model) {
-        //todo: validacie
+        //validacie spravnosti clanku
+        if (result.hasErrors()) {
+            model.addAttribute("article", articleDto);
+            System.out.println("chyba pridavani articla");
+            return "/addArticle";
+        }
+
         //ulozim article s danym autorom kotry pridal clanok(moze len prihlaseny uzivatel)
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByNick(auth.getName());
         if (user != null) {
-            article.setUser(user);
+            articleDto.setUser(user);
         }
-        articleService.saveArticle(article);
+        articleService.saveArticle(articleDto);
         return "redirect:/addArticle?success";
     }
 

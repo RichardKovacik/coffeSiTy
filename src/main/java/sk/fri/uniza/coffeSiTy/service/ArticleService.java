@@ -2,6 +2,7 @@ package sk.fri.uniza.coffeSiTy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.fri.uniza.coffeSiTy.dto.ArticleDto;
 import sk.fri.uniza.coffeSiTy.entity.Article;
 import sk.fri.uniza.coffeSiTy.repository.ArticleRepo;
 
@@ -15,7 +16,11 @@ public class ArticleService {
         return articleRepo.findAll();
     }
 
-    public void saveArticle(Article article) {
+    public void saveArticle(ArticleDto articleDto) {
+        Article article = new Article();
+        article.setUser(articleDto.getUser());
+        article.setContent(articleDto.getContent());
+        article.setTitle(articleDto.getTitle());
         articleRepo.save(article);
 
     }

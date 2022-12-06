@@ -28,6 +28,7 @@ $(document).ready(function () {
 //ajax pre dynamicke nacitanie cislenikov kraj-region-okres
 
 $(document).ready(function () {
+    //pri zmenee kraja nastavim districtID(zvolim v cmb kraj) a vytiahnem si na zaklade distrID okresy
     $("#districts").change(
         function region() {
             $.getJSON("http://localhost:8080/regions", {

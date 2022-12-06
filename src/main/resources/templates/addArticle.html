@@ -56,34 +56,37 @@
               <label class="form-label">Nadpis clanku:</label>
               <label for="titleArticle"></label>
               <input
-                    minlength="5"
+                    minlength="3"
                     maxlength="60"
                     required
                     class="form-control"
                     id="titleArticle"
-                    name="titleArticle"
+                    name="title"
                     th:field="*{title}"
                     placeholder="Zadaj nadpis"
                     type="text"
             />
-<!--                    th:field="*{name}"-->
-<!--            />-->
-<!--              <p th:errors = "*{name}" class="text-danger"-->
-<!--                 th:if="${#fields.hasErrors('name')}"></p>-->
-<!--              <p id="nameErr" class="text-danger" > </p>-->
+              <p th:errors = "*{title}" class="text-danger"
+                 th:if="${#fields.hasErrors('title')}"></p>
+              <p id="nameErr" class="text-danger" > </p>
             </div>
 
               <div class="form-group mb-3">
                   <label class="label" >Text:</label>
             <br>
                 <label for="obsah"></label>
-              <textarea placeholder="Zadaj text" id="obsah" rows="10" th:field="*{content}"></textarea>
-
-                  <!--                      th:field="*{lastName}"-->
-
-<!--              <p th:errors = "*{lastName}" class="text-danger"-->
-<!--                 th:if="${#fields.hasErrors('lastName')}"></p>-->
-<!--              <p id="lnErr" class="text-danger" > </p>-->
+              <textarea placeholder="Zadaj text"
+                        id="obsah"
+                        name="content"
+                        rows="10"
+                        th:field="*{content}"
+                        maxlength="2000"
+                        required
+                        minlength="100">
+              </textarea>
+              <p th:errors = "*{content}" class="text-danger"
+                 th:if="${#fields.hasErrors('content')}"></p>
+              <p id="lnErr" class="text-danger" > </p>
             </div>
             <div class="form-group mb-3">
               <button class="btn btn-primary" type="submit">Pridat</button>

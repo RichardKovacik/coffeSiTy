@@ -66,15 +66,16 @@ public class UserController {
 
         return "redirect:/users";
     }
+    // responsebody anotacia hovori ze metoda vracia objekt kotry s aut. serializuje do JSONU
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
-    public @ResponseBody List<Region> getRegionsFromDist(
-            @RequestParam(value = "districtId") Long districId) {
+    @ResponseBody
+    public List<Region> getRegionsFromDist(@RequestParam(value = "districtId") Long districId) {
         return regionService.getAllRegionsFromDistrict(districId);
     }
 
     @RequestMapping(value = "/cities", method = RequestMethod.GET)
-    public @ResponseBody List<City> getCitiesFromRegion(
-            @RequestParam(value = "regionId")  Long regionId) {
+    @ResponseBody
+    public List<City> getCitiesFromRegion(@RequestParam(value = "regionId")  Long regionId) {
         return cityService.getAllCitiesFromRegion(regionId);
     }
 
