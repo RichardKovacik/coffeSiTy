@@ -137,7 +137,6 @@ public class UserController {
                     "Neplatny datum narodenia");
         }
 
-//        if (userDto.getAddressDto().getPsc())
 
         if (result.hasErrors()) {
             model.addAttribute("districts",districtService.getAllDistricts());
@@ -146,6 +145,7 @@ public class UserController {
             System.out.println("aaaaa");
             return "/registration";
         }
+
         //najskor ulozim adresu so city id
         //todo: null exep
          City city = cityService.getCityById(cityId);

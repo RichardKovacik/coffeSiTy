@@ -78,6 +78,40 @@ public class ArticleController {
     }
 
     @Transactional
+    @GetMapping("/blog/edit/{id}")
+    public String showEditArticlePage(@PathVariable("id") Long id,
+                              Model model,
+                              RedirectAttributes ra) {
+        Article article = articleService.findArticleById(id);
+        ArticleDto articleDto = new ArticleDto();
+        if (article != null) {
+            articleDto.setId(article.getId());
+            articleDto.setUser(article.getUser());
+            articleDto.setTitle(article.getTitle());
+            articleDto.setContent(article.getContent());
+        }
+        model.addAttribute("article", articleDto);
+        return "editArticle";
+    }
+
+    @PostMapping("/editArticle/save")
+    @Transactional
+    public String aveEditedArticle(@Valid @ModelAttribute("article") ArticleDto articleDto,
+                              BindingResult result,
+                              Model model) {
+        //validacie spravnosti clanku
+        if (result.hasErrors()) {
+            return "/editArticle";
+        }
+
+        System.out.println(articleDto.getContent().length());
+        System.out.println(articleDto.getTitle().length());
+        articleService.updateArticle(articleDto);
+        Long id = articleDto.getId();
+        return "redirect:/blog/edit/"+id+"?success";
+    }
+
+    @Transactional
     @GetMapping("/blog/delete/{id}")
     public String deleteArticle(@PathVariable("id") Long id,
                              Model model,

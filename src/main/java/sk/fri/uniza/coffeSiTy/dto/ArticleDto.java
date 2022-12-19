@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 
 public class ArticleDto {
 
+    Long id;
+
     @NotNull
     @NotEmpty
     @Size(min = 3, max = 60, message = "Napdis clanku musi obsahovat min 3 a max 60 znakov")
@@ -43,5 +45,13 @@ public class ArticleDto {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

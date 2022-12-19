@@ -33,7 +33,7 @@ public class MyUserDetailService implements UserDetailsService {
             return new org.springframework.security.core.userdetails.User(user.getNick(),
                     user.getPass(),
                     mapRolesToAuthorities(user.getRoles()));
-        }else{
+        }else {
             throw new UsernameNotFoundException("Nespravne uzivatelske meno alebo heslo.");
         }
     }

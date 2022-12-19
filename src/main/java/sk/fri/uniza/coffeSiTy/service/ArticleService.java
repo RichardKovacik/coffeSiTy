@@ -24,6 +24,14 @@ public class ArticleService {
         articleRepo.save(article);
 
     }
+    public void updateArticle(ArticleDto articleDto) {
+        Article article = this.findArticleById(articleDto.getId());
+        if (article != null){
+            article.setContent(articleDto.getContent());
+            article.setTitle(articleDto.getTitle());
+            this.articleRepo.save(article);
+        }
+    }
     public Article findArticleById(Long id){
         return articleRepo.findArticleById(id);
     }
