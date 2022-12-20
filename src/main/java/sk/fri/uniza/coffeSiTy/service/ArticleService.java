@@ -38,4 +38,10 @@ public class ArticleService {
     public void deleteArticleById(Long id){
          articleRepo.deleteArticleById(id);
     }
+
+    public List<Article> getArtcilesByAuthor(String idOfSelectedUser) {
+
+        Long selId = Long.valueOf(idOfSelectedUser);
+        return this.getAllArticles().stream().filter(article -> article.getUser().getId() == selId).toList();
+    }
 }

@@ -91,4 +91,8 @@ public class UserService {
     public List<User> findUsersByKey(String key){
         return userRepo.findUsersByKey(key);
     }
+    @Transactional
+    public List<User> getUsersWhoHaveArticles(){
+        return this.getListAll().stream().filter(user -> user.getArticles().size() > 0).toList();
+    }
 }

@@ -47,15 +47,21 @@
     </div>
     <h3>Filtrovanie clankov:</h3>
     <br>
+    <form th:action="@{/blog}" method="get">
+        <label for="userArticles"></label>
+        <input hidden id="userArticles" type="text" name="idOfSelectedUser"/>
+        <button hidden id="btnSubmit" class="btn-primary" type="submit">Daj clanky daneho usera</button>
+    </form>
+
     <div class="card-group">
         <div class="form-group mx-2">
             <label class="form-label cmb">Autor:</label>
             <label>
-                <select  id="diricts" name="districts" class="form-select" >
+                <select  th:onchange="return refreshList()" id="usersCmb" name="users" class="form-select" >
                     <option value="" selected disabled hidden>Vyber Autora</option>
-<!--                    <option th:each="d : ${districts}"-->
-<!--                            th:text="${d.name}"-->
-<!--                            th:value="${d.id}"></option>-->
+                    <option th:each="u : ${users}"
+                            th:text="${u.nick}"
+                            th:value="${u.id}"></option>
                 </select>
             </label>
         </div>
@@ -75,7 +81,7 @@
     <th:block th:each="article: ${list}">
         <div class="px-4 px-lg-3 mt-3">
     <div class="card h-100">
-        <div class="card-header">Autor: [[${article.user.name}]]</div>
+        <div class="card-header">Autor: [[${article.user.nick}]]</div>
         <div class="card-body">
             <h5 class="card-title">[[${article.title}]]</h5>
             <p class="card-text">[[${article.getFirstPartOfContent()}]]</p>

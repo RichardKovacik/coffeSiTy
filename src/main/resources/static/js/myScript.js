@@ -64,6 +64,14 @@ $(document).ready(function () {
         });
 });
 
+function refreshList(){
+    let selectedIdOfUser = document.getElementById("usersCmb").value;
+    let userArts = document.getElementById("userArticles");
+    let btnSubmit = document.getElementById("btnSubmit");
+    userArts.value = selectedIdOfUser;
+    btnSubmit.click();
+    console.log("Bol zvoleny uzivatel S ID:"+ userArts.value);
+}
 function changeVis() {
     let pass = document.getElementById("pass");
     if (pass.type === "password") {

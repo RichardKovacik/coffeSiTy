@@ -135,6 +135,10 @@ public class User {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
 }
 
 

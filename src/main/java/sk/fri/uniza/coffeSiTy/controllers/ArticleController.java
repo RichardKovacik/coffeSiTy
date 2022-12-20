@@ -29,13 +29,20 @@ public class ArticleController {
 
     @RequestMapping("/blog")
     @Transactional
-    public String getAllArticles(Model model) {
-        List<Article> listArticles = articleService.getAllArticles();
-        model.addAttribute("list", listArticles);
+    public String getAllArticles(Model model, String idOfSelectedUser) {
+
         //vytiahnem z db aktualne prihlseneho usera
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByNick(auth.getName());
         model.addAttribute("user",user);
+        List<User> listOfUsers = userService.getUsersWhoHaveArticles();
+        model.addAttribute("users",listOfUsers);
+
+        System.out.println(idOfSelectedUser);
+
+        List<Article> listOfArticles = idOfSelectedUser != null ?
+                articleService.getArtcilesByAuthor(idOfSelectedUser) : articleService.getAllArticles();
+        model.addAttribute("list", listOfArticles);
         return "blog";
     }
     @RequestMapping("/addArticle")
