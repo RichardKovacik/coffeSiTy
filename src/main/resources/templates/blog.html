@@ -45,6 +45,32 @@
             Clanok bol uspesne odstraneny
         </div>
     </div>
+    <h3>Filtrovanie clankov:</h3>
+    <br>
+    <div class="card-group">
+        <div class="form-group mx-2">
+            <label class="form-label cmb">Autor:</label>
+            <label>
+                <select  id="diricts" name="districts" class="form-select" >
+                    <option value="" selected disabled hidden>Vyber Autora</option>
+<!--                    <option th:each="d : ${districts}"-->
+<!--                            th:text="${d.name}"-->
+<!--                            th:value="${d.id}"></option>-->
+                </select>
+            </label>
+        </div>
+        <div class="form-group mx-2">
+            <label class="form-label cmb">Kategoria:</label>
+            <label>
+                <select  id="districts" name="districts" class="form-select" >
+                    <option value="" selected disabled hidden>Vyber Kategoriu</option>
+                    <!--                    <option th:each="d : ${districts}"-->
+                    <!--                            th:text="${d.name}"-->
+                    <!--                            th:value="${d.id}"></option>-->
+                </select>
+            </label>
+        </div>
+    </div>
 <div class="card-group">
     <th:block th:each="article: ${list}">
         <div class="px-4 px-lg-3 mt-3">

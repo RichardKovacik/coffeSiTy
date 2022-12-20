@@ -116,7 +116,6 @@ public class ArticleController {
     public String deleteArticle(@PathVariable("id") Long id,
                              Model model,
                              RedirectAttributes ra) {
-        //todo: validacia nespravneho id
             articleService.deleteArticleById(id);
             //znova nacitam uzivatelov ale uz bez vymazeneho
             List<Article> list = articleService.getAllArticles();

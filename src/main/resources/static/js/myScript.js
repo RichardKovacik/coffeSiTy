@@ -31,7 +31,7 @@ $(document).ready(function () {
     //pri zmenee kraja nastavim districtID(zvolim v cmb kraj) a vytiahnem si na zaklade distrID okresy
     $("#districts").change(
         function region() {
-            $.getJSON("http://localhost:8080/regions", {
+            $.getJSON("/regions", {
                 districtId : $(this).val(),
                 ajax : 'true'
             }, function(data) {
@@ -48,7 +48,7 @@ $(document).ready(function () {
         });
     $("#regions").change(
         function city() {
-            $.getJSON("http://localhost:8080/cities", {
+            $.getJSON("/cities", {
                 regionId : $(this).val(),
                 ajax : 'true'
             }, function(data) {
