@@ -89,9 +89,9 @@ public class UserController {
 
     //todo: optimalozvat danu metodu
     @GetMapping(value = "/users")
-    public String listUsers(Model model) {
-        List<User> listUsers = userService.getListAll();
-        model.addAttribute("list", listUsers);
+    public String listUsers(Model model, String key) {
+        List<User> listofUsers = key != null ? userService.findUsersByKey(key) : userService.getListAll();
+        model.addAttribute("list", listofUsers);
         return "users";
     }
 
@@ -142,7 +142,6 @@ public class UserController {
             model.addAttribute("districts",districtService.getAllDistricts());
             model.addAttribute("user", userDto);
             model.addAttribute("title", "Registracia pouzivatela");
-            System.out.println("aaaaa");
             return "/registration";
         }
 

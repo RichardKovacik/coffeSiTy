@@ -86,4 +86,9 @@ public class UserService {
         }
         userRepo.deleteUserById(id);
     }
+
+    @Transactional
+    public List<User> findUsersByKey(String key){
+        return userRepo.findUsersByKey(key);
+    }
 }

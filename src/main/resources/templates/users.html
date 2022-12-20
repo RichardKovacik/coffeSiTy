@@ -34,7 +34,9 @@
         </div>
     </div>
 </nav>
-<h1>Uzivatelia:</h1>
+<h1 class="text-center">
+    Zoznam uzivatelov
+</h1>
 <span th:text="${title}"></span>
 <div th:if="${param.success}">
     <div class="alert alert-info">
@@ -48,6 +50,14 @@
 <div th:if="${exp}" class="alert alert-danger">
     [[${exp}]]
 </div>
+<div class="mb-3">
+<form th:action="@{/users}" method="get">
+    <label for="srch"></label>
+    <input id="srch" placeholder="Zadaj meno" type="text" name="key"/>
+    <button class="btn-primary" type="submit">Hladaj</button>
+</form>
+</div>
+
 <div class="table-responsive">
     <table class="table table-dark table-striped table-bordered">
         <thead class="thead-dark">
