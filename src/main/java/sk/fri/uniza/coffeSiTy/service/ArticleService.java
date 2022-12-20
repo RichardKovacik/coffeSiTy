@@ -40,7 +40,6 @@ public class ArticleService {
     }
 
     public List<Article> getArtcilesByAuthor(String idOfSelectedUser) {
-
         Long selId = Long.valueOf(idOfSelectedUser);
         return this.getAllArticles().stream().filter(article -> article.getUser().getId() == selId).toList();
     }
