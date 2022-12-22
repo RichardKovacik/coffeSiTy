@@ -30,16 +30,13 @@ public class ArticleController {
     @RequestMapping("/blog")
     @Transactional
     public String getAllArticles(Model model, String idOfSelectedUser) {
-
         //vytiahnem z db aktualne prihlseneho usera
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByNick(auth.getName());
         model.addAttribute("user",user);
         List<User> listOfUsers = userService.getUsersWhoHaveArticles();
         model.addAttribute("users",listOfUsers);
-
-        System.out.println(idOfSelectedUser);
-
+        //zobrazenie zoznamu articlov na zaklade zvoleneho uzivatela
         List<Article> listOfArticles = idOfSelectedUser != null ?
                 articleService.getArtcilesByAuthor(idOfSelectedUser) : articleService.getAllArticles();
         model.addAttribute("list", listOfArticles);
@@ -47,7 +44,6 @@ public class ArticleController {
     }
     @RequestMapping("/addArticle")
     public String getPageForAddArticle(Model model) {
-        //todo: do buducna prerobit article na dto object
         model.addAttribute("article", new ArticleDto());
         return "addArticle";
     }
