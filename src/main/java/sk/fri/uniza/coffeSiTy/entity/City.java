@@ -15,7 +15,7 @@ public class City implements Serializable {
     private Long id;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

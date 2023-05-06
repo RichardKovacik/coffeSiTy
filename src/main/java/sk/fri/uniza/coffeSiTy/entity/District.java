@@ -15,7 +15,7 @@ public class District implements Serializable {
     private Long id;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
     @JsonIgnore
     @OneToMany(mappedBy="district")

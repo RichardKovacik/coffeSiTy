@@ -79,7 +79,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUserById(Long id) throws UserNotFoundException{
+    public void deleteUserById(Long id) throws UserNotFoundException {
         User user = userRepo.findUserById(id);
         if (user == null) {
             throw new UserNotFoundException();

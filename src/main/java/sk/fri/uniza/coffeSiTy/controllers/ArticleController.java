@@ -29,7 +29,12 @@ public class ArticleController {
 
     @RequestMapping("/blog")
     @Transactional
-    public String getAllArticles(Model model, String idOfSelectedUser) {
+    public String getAllArticles(Model model, String idOfSelectedUser, Integer a) {
+        if (a != null) {
+            System.out.println(a);
+        }else{
+            System.out.println("neni a");
+        }
         //vytiahnem z db aktualne prihlseneho usera
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByNick(auth.getName());

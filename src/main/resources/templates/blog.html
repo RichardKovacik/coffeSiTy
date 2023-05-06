@@ -57,7 +57,7 @@
         <div class="form-group mx-2">
             <label class="form-label cmb">Autor:</label>
             <label>
-                <select  th:onchange="return refreshList()" id="usersCmb" name="users" class="form-select" >
+                <select th:onchange="return refreshList()" id="usersCmb" name="users" class="form-select" >
                     <option value="" selected disabled hidden>Vyber Autora</option>
                     <option th:each="u : ${users}"
                             th:text="${u.nick}"
